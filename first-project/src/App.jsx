@@ -3,11 +3,12 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 // import {products} from './product.js'
-import Counter from './Counter.jsx'
+// import Counter from './Counter.jsx'
+import Show from '../ProductList'
 
 const App = () => {
   return (<>
-    <Counter />
+    <Show />
   </>)
 };
 export default App;

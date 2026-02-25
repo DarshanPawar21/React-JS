@@ -1,4 +1,4 @@
-import products from "./product"
+import products from "./src/product"
 const Show = () => {
     return(<>
     {
