@@ -4,12 +4,10 @@ import viteLogo from '/vite.svg'
 import './App.css'
 // import Counter from './Counter'
 import Counter from './Counter.jsx'
-import Show from '../../first-project/ProductList.jsx'
 function App() {
   return (
     <>
     <Counter />
-    <Show />
     </>
   )
 }

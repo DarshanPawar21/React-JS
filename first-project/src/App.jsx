@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 // import {products} from './product.js'
 // import Counter from './Counter.jsx'
-import Show from '../ProductList'
+import Show from './ProductList'
 
 const App = () => {
   return (<>
