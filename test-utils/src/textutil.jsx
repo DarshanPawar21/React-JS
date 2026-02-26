@@ -17,8 +17,8 @@ const TextUtil = () => {
             <div className="mx-3">
                 <button onClick={()=>settext(text.toUpperCase())} className="btn btn-primary">To Uppercase</button>
                 <button onClick={()=>settext(text.toLowerCase())} className="btn btn-primary mx-2">To Lowercase</button>
-                <button onClick={()=>setcount(count.length)} className="btn btn-primary mx-2">Count Text</button>
-                <button onClick={()=>setcountword(countword.split(" "))} className="btn btn-primary mx-2">Count Word</button>
+                <button onClick={()=>setcount(text.length)} className="btn btn-primary mx-2">Count Text</button>
+                <button onClick={()=>setcountword(text.split(" "))} className="btn btn-primary mx-2">Count Word</button>
             </div>
             <hr />
             <div className="m-3">
