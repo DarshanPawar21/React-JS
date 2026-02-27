@@ -1,4 +1,4 @@
-import TextUtil from "./textutil";
+import TextUtil from "./component/textutil";
 const App =()=>{
   return(<>
   <TextUtil />
