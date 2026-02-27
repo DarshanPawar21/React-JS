@@ -1,15 +1,15 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 const TextUtil = () => {
-    useEffect(()=>{
+    useEffect(() => {
         settext(localStorage.getItem("text"));
         setcount(localStorage.getItem("count"));
         setcountword(localStorage.getItem("countword"));
         setSecond(localStorage.getItem("second"));
-    },[])
-    const [text, settext] = useState("");
-    const [count, setcount] = useState(0);
-    const [countword, setcountword] = useState(0);
-    const [Second,setSecond] = useState(0);
+    }, [])
+    const [text, settext] = useState(localStorage.getItem("text") || "");
+    const [count, setcount] = useState(localStorage.getItem("count") || 0);
+    const [countword, setcountword] = useState(localStorage.getItem("countword") || 0);
+    const [Second, setSecond] = useState(localStorage.getItem("second") || 0);
     return (<>
         <div className="Container">
             <div>
@@ -28,13 +28,17 @@ const TextUtil = () => {
                 <button onClick={() => settext(text.toUpperCase())} className="btn btn-primary">To Uppercase</button>
                 <button onClick={() => settext(text.toLowerCase())} className="btn btn-primary mx-2">To Lowercase</button>
                 <button onClick={() => {
-                    setcount(text.length)}} className="btn btn-primary mx-2">Count Text</button>
+                    setcount(text.length)
+                    // localStorage.setItem("count", count);
+                }} className="btn btn-primary mx-2">Count Text</button>
                 <button onClick={() => {
-                    setcountword(text.split(" ").length); 
-                    localStorage.setItem("Countword",countword)}} className="btn btn-primary mx-2">Count Word</button>
+                    setcountword(text.split(" ").length);
+                    // localStorage.setItem("Countword", countword)
+                }} className="btn btn-primary mx-2">Count Word</button>
                 <button onClick={() => {
-                    setSecond(text.split(" ").length * 60 / 180); 
-                    localStorage.setItem("second",Second)}} className="btn btn-primary mx-2">Second Count</button>
+                    setSecond(text.split(" ").length * 60 / 180);
+                    // localStorage.setItem("second", Second)
+                }} className="btn btn-primary mx-2">Second Count</button>
                 <button onClick={() => {
                     settext("");
                     setcount(0);
