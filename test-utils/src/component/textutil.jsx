@@ -25,8 +25,14 @@ const TextUtil = () => {
                 </div>
             </div>
             <div className="mx-3 text-center bg-white rounded p-2">
-                <button onClick={() => settext(text.toUpperCase())} className="btn btn-primary">To Uppercase</button>
-                <button onClick={() => settext(text.toLowerCase())} className="btn btn-primary mx-2">To Lowercase</button>
+                <button onClick={() => {
+                    settext(text.toUpperCase())
+                    localStorage.setItem("text",text.toUpperCase())
+                }} className="btn btn-primary">To Uppercase</button>
+                <button onClick={() => {
+                    settext(text.toLowerCase())
+                    localStorage.setItem("text",text.toLowerCase())
+                }} className="btn btn-primary mx-2">To Lowercase</button>
                 <button onClick={() => {
                     setcount(text.length)
                     localStorage.setItem("count", text.length.toString())
@@ -44,6 +50,7 @@ const TextUtil = () => {
                     setcount(0);    
                     setcountword(0);
                     setSecond(0);
+                    localStorage.clear()
                 }} className="btn btn-primary mx-2">Remove Text</button>
             </div>
             <hr />
