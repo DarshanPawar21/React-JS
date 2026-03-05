@@ -11,7 +11,7 @@ const Project = () => {
                                 <div class="card-body">
                                     <h5 class="card-title">Todos</h5>
                                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    <a href="#" class="btn btn-primary">Link</a>
                                 </div>
                             </div>
                         </div>
@@ -19,21 +19,21 @@ const Project = () => {
                             <div class="card-body">
                                 <h5 class="card-title">Weather</h5>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <a href="#" class="btn btn-primary">Link</a>
                             </div>
                         </div></div>
                         <div class="col"><div class="card bg-black bor text-white">
                             <div class="card-body">
                                 <h5 class="card-title">Quiz</h5>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <a href="#" class="btn btn-primary">Link</a>
                             </div>
                         </div></div>
                         <div class="col"><div class="card bg-black bor text-white">
                             <div class="card-body">
                                 <h5 class="card-title">E-commerce</h5>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <a href="#" class="btn btn-primary">Link</a>
                             </div>
                         </div></div>
                     </div>

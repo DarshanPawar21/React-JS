@@ -1,7 +1,7 @@
 import './Nev.css'
 const Nev = () => {
     return <>
-        <div className="container bg-black">
+        <div className="container">
             <nav className="navbar navbar-expand-lg d-flex justify-content-center my-4 bor rounded-5 ">
                 <div className="collapse navbar-collapse d-flex justify-content-center  " id="navbarNav">
                     <ul className="navbar-nav gap-5 h3">
