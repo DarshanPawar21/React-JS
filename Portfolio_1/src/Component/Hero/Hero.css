@@ -1,0 +1,32 @@
+.tex{
+    font-size: 60px;
+    color: #F56C00;
+    font-weight: 600;
+}
+.bt{
+    background: #F56C00;
+    color: white;
+}
+.colo{
+    color: #F56C00;
+}
+.sil{
+    border: solid silver 5px;
+}
+.f{
+    font-size: 40px;
+    color: #F56C00;
+    font-weight: 600;
+}
+.onli{
+    border: solid #F56C00 1px;
+}
+.bo{
+    border: solid #F56C00 5px;
+}
+.bt1{
+    color: white;
+    border: solid #F56C00 2px;
+    outline: 4px  #F56C00;
+    outline-offset: solid #F56C00 10px;
+}

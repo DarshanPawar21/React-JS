@@ -21,7 +21,7 @@ const TextUtil = () => {
                         settext(e.target.value)
                         localStorage.setItem("text", text);
                     }} className="form-control" placeholder="Leave a comment here" id="floatingTextarea" style={{ height: 100 }}></textarea>
-                    <label htmlFor="floatingTextarea">Comments</label>
+                    {/* <label htmlFor="floatingTextarea">Comments</label> */}
                 </div>
             </div>
             <div className="mx-3 text-center bg-white rounded p-2">
@@ -59,7 +59,7 @@ const TextUtil = () => {
                 {text}
                 <h3 className="m-3">Text Count :{count}</h3>
                 <h3 className="m-3">Text Count Word :{countword}</h3>
-                <h3 className="m-3">Text Count Second :{Second} s</h3>
+                <h3 className="m-3">Text Count Second :{Second}</h3>
             </div>
         </div>
     </>)

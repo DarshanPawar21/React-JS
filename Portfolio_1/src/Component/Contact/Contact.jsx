@@ -1,22 +1,35 @@
-import "./Contact.css"
+import "../Hero/Hero.css"
 const Cont = () => {
     return <>
-        <div className="container d-flex flex-column align-items-center">
-            <div className="d-flex justify-content-center text-center mt-3 text-white bor p-2 rounded-5 h2" style={{ width: 800 }}>Contact</div>
-            <div className="d-flex gap-2">
-                <div className="bor p-3 rounded-5" >
-                    <i class="ri-instagram-line text-white h1"> darshanpawar589</i>
+        <div className="container">
+            <div className="d-flex justify-content-between align-items-center row">
+                <div className="f text-center mb-5">
+                    Contact
                 </div>
-                <div className="bor p-3 rounded-5" >
-                    <i class="ri-linkedin-box-fill text-white h1"> darshan_pawar</i>
+                <div className="col-6 align-items-center">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm4UC87GK8NcYW-_7wkw06stFE3NXH2BBe3g&s" alt="" style={{ width: 350 }} />
                 </div>
-                <div className="bor p-3 rounded-5" >
-                   <i class="ri-github-fill text-white h1">DARSHAN PAWAR</i>
+                <div className="col-6 text-white">
+                    <form>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Name :</label>
+                            <input type="text" class="form-control bg-black text-white onli" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                            {/* <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> */}
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input type="email" class="form-control bg-black text-white onli" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                            {/* <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> */}
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Phone :</label>
+                            <input type="number" class="form-control bg-black text-white onli" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                            {/* <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> */}
+                        </div>
+                        <button type="submit" class="btn bt1 btn-out-i" style={{width:"100%"}}>Submit</button>
+                    </form>
                 </div>
             </div>
-        </div>
-
-        <div className="container bor rounded-5 mt-4">
         </div>
     </>
 }
