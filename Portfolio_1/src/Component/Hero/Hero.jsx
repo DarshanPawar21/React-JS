@@ -1,4 +1,4 @@
-import p1 from "../../assets/p2.jpeg";
+import p1 from "../../assets/p1.jpg";
 import './Hero.css'
 const Hero = () => {
     return (<>
@@ -12,14 +12,14 @@ const Hero = () => {
                         <a href="https://www.instagram.com/accounts/login/?hl=en" className="text-decoration-none text-white"><i class="ri-instagram-line"></i></a>
                         <a href="https://www.linkedin.com/in/darshan-pawar-b2293139a/" className="text-decoration-none text-white"><i class="ri-linkedin-box-line"></i></a>
                         <a href="https://github.com/DarshanPawar21" className="text-decoration-none text-white"><i class="ri-github-fill"></i></a>
-                        <a><i class="ri-whatsapp-line"></i></a>
+                        <a href="https://wa.me/qr/37BN4T2WJH7ZM1" className="text-decoration-none text-white"><i class="ri-whatsapp-line"></i></a>
                     </div>
                     <div className="d-flex gap-3 mt-4 ms-5">
-                        <a href="#"><button className="btn px-4 bt1 px-4 btn-outline-info">Hire Me</button></a>
+                        <a href="#"><button className="btn px-4 bt1 px-4 btn-outline-warning">Hire Me</button></a>
                         {/* <button className="btn btn-outline-secondary px-4">Hire Me</button> */}
                     </div>
                 </div>
-                <div className="text-white fs-5 ms-5">
+                <div className="text-white fs-5 ms-5" id="Abo">
                     <p>
 I am a Full Stack Developer passionate about building scalable, user-centric web applications. I bridge the gap between complex backend logic and sleek, responsive front-end design. Whether it’s architecting a robust database or polishing a UI component, I love solving puzzles through code. I am constantly learning, adapting, and looking for new challenges to push the boundaries of what I can build. Let’s create something impactful together.
                     </p>

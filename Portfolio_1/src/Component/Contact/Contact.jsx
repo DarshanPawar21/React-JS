@@ -3,7 +3,7 @@ const Cont = () => {
     return <>
         <div className="container">
             <div className="d-flex justify-content-between align-items-center row">
-                <div className="f text-center mb-5">
+                <div className="f text-center mb-5"id="Cont">
                     Contact
                 </div>
                 <div className="col-6 align-items-center">
@@ -26,7 +26,7 @@ const Cont = () => {
                             <input type="number" class="form-control bg-black text-white onli" id="exampleInputEmail1" aria-describedby="emailHelp" />
                             {/* <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> */}
                         </div>
-                        <button type="submit" class="btn bt1 btn-out-i" style={{width:"100%"}}>Submit</button>
+                        <button type="submit" class="btn bt1 btn-outline-warning" style={{width:"100%"}}>Submit</button>
                     </form>
                 </div>
             </div>
