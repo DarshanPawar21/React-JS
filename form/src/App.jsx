@@ -1,10 +1,16 @@
 import React from "react";
 import Form from "./Form";
 import "./App.css"
-const App = () =>{
-  return(<>
-  < Form />
-  {/* <h1>DArsha</h1> */}
+import { BrowserRouter } from "react-router";
+import { Routers,Route } from "react-router";
+const App = () => {
+  return (<>
+  <Routers>
+    <Route path="/" element = {<Form />} />
+  </Routers>
+    <BrowserRouter>
+      < Form />
+    </BrowserRouter>
   </>)
 }
 export default App;

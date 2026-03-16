@@ -1,12 +1,12 @@
 import "../Hero/Hero.css"
 const Education = () => {
     return (<>
-        <div className="container-fluid ">
-            <div className="f text-center mt-5 text" id="Education">
+        <div className="container-fluid d-flex flex-column align-items-center mt-5" style={{height:"100vh"}}>
+            <div className="f text-center  text" id="Education">
                 Education
             </div>
-            <div className="container" >
-                <div className="container d-flex justify-content-center gap-5 row">
+            <div className="container ">
+                <div className="container  justify-content-center  gap-5 row">
                     <div class="col-5 card text-center bg-black onli text-white mt-5 ">
                         <div class="card-header fs-2 ">
                             R.N Naik High School 

@@ -2,7 +2,7 @@ import p1 from "../../assets/p1.jpg";
 import './Hero.css'
 const Hero = () => {
     return (<>
-        <div className="container-fluid d-flex " style={{ width: "90%", height: "80vh" }}>
+        <div className="container-fluid d-flex " style={{ width: "90%", height: "90vh" }}>
             <div className="d-flex flex-column  justify-content-center align-content-center" style={{ width: "100%", height: "100%" }}>
                 <div className=" d-flex flex-column mt-5 mb-5">
                     <span className="fs-3 ms-5 text-secondary">Hey I am</span>
@@ -26,7 +26,7 @@ I am a Full Stack Developer passionate about building scalable, user-centric web
                 </div>
             </div>
             <div className=" d-flex justify-content-center align-items-center mt-5" style={{ width: "100%" }}>
-                <div className="sil rounded-circle d-flex" style={{ width: "80%", height: "90%" }}>
+                <div className="sil rounded-circle d-flex" style={{ width: "80%", height: "80%" }}>
                     <img className="object-fit-cover rounded-circle" style={{width:"100%"}} src={p1} alt="" />
                 </div>
             </div>
