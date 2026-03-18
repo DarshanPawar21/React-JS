@@ -1,16 +1,19 @@
 import React from "react";
-import Form from "./Form";
+import Form from "./Component/Form";
 import "./App.css"
 import { BrowserRouter } from "react-router";
-import { Routers,Route } from "react-router";
+import "./Component/Nev"
+import Nev from "./Component/Nev";
+
+import { Routes,Route } from "react-router";
+import User from "./Component/user";
 const App = () => {
   return (<>
-  <Routers>
-    <Route path="/" element = {<Form />} />
-  </Routers>
-    <BrowserRouter>
-      < Form />
-    </BrowserRouter>
+    <Nev />
+      <Routes>
+        <Route path="/" element={<Form />} />
+        <Route path="/user" element={<User />} />
+      </Routes>
   </>)
 }
 export default App;
