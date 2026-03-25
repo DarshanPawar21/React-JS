@@ -13,11 +13,8 @@ const User = () => {
                     setuser(users.filter((user) => user.name.toLowerCase() == search.toLowerCase()))
                 }}>Search</button>
                 <button className="btn btn-primary ms-2" onClick={() => {
-                    const cle = [...users]
-                    cle.clear()
-                    setuser(cle);
-                    // setuser(JSON.parse(localStorage.getItem("users")));
-
+                    setuser([]);
+                    localStorage.removeItem("users")
                 }}>Clear</button>
                 <button className="btn btn-warning text-white ms-2" onClick={() => {
                     const arr = [...users]
