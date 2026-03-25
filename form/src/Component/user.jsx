@@ -13,8 +13,11 @@ const User = () => {
                     setuser(users.filter((user) => user.name.toLowerCase() == search.toLowerCase()))
                 }}>Search</button>
                 <button className="btn btn-primary ms-2" onClick={() => {
-                    setuser(JSON.parse(localStorage.getItem("users")))
-                    setsearch("")
+                    const cle = [...users]
+                    cle.clear()
+                    setuser(cle);
+                    // setuser(JSON.parse(localStorage.getItem("users")));
+
                 }}>Clear</button>
                 <button className="btn btn-warning text-white ms-2" onClick={() => {
                     const arr = [...users]
@@ -29,7 +32,7 @@ const User = () => {
             </div>
             <div className="container d-flex  justify-content-center gap-4 mt-4" style={{ width: "20%", height: "auto" }}>
                 {
-                    users.map((use,i) => (
+                    users.map((use, i) => (
                         <div className="shadow p-4 rounded-4 col">
                             <div className="">
                                 <h3>{use.name}</h3>
@@ -38,8 +41,8 @@ const User = () => {
                                 <span className="d-flex flex-column">Fees : {use.Fees}</span>
                                 <button className="btn btn-danger" onClick={() => {
                                     const array = [...users];
-                                    array.splice(i,1);
-                                    localStorage.setItem("users",JSON.stringify(array))
+                                    array.splice(i, 1);
+                                    localStorage.setItem("users", JSON.stringify(array))
                                     setuser(array);
                                 }}>Remove</button>
                             </div>
