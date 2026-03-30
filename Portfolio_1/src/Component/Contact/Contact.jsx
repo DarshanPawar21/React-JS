@@ -1,5 +1,7 @@
+import { useState } from "react";
 import "../Hero/Hero.css"
 const Cont = () => {
+    const [user,setuser] = useState({});
     return <>
         <div className="container">
             <div className="d-flex justify-content-between align-items-center row">
@@ -13,7 +15,8 @@ const Cont = () => {
                     <form>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Name :</label>
-                            <input type="text" class="form-control bg-black text-white onli" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                            <input type="text" onChange={(e)=>
+                                    setuser({...user,name :e.target.value})} class="form-control bg-black text-white onli" id="exampleInputEmail1" aria-describedby="emailHelp" />
                             {/* <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> */}
                         </div>
                         <div class="mb-3">

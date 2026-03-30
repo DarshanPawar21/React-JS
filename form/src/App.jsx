@@ -11,7 +11,7 @@ const App = () => {
   return (<>
     <Nev />
       <Routes>
-        <Route path="/" element={<Form />} />
+        {/* <Route path="/" element={<Form />} /> */}
         <Route path="/user" element={<User />} />
       </Routes>
   </>)

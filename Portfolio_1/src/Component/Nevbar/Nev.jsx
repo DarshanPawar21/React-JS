@@ -36,7 +36,6 @@ const Nev = () => {
                 </div>
                 <button class="btn  px-4 mt-2 me-3 bt btn-outline-warning col-xl-1 col-lg-2 col-md-12 mt-3 col-sm-12" type="submit">Here Me</button>
             </div>
-
         </nav>
     </>
 };
