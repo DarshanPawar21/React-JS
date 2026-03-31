@@ -21,7 +21,7 @@ const Home = () => {
         localStorage.setItem("card",JSON.stringify(cardlist));
     } 
     return (
-        <div className="container d-grid">
+        <div className="container d-grid mt-5">
             <div className="d-flex justify-content-center py-5 row gap-5">
                 {products.map((pro, i) => (
                     <div key={i} className="card rounded-5 col-12 " style={{ width: "18rem", height: "auto", backgroundColor: "#FFF8E7" }}>
@@ -47,8 +47,8 @@ const Home = () => {
                                 <button href="#" className="btn btn-success px-4">
                                     Buy
                                 </button>
-                                <button href="#" className="btn btn-warning px-4" onClick={()=>CardAdd(pro)}>
-                                    Card
+                                <button href="#" className="btn text-black btn-warning px-4" onClick={()=>CardAdd(pro)}>
+                                  Add to Card
                                 </button>
                             </div>
                         </div>

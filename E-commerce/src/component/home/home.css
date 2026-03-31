@@ -3,3 +3,9 @@
   font-weight: 600;
   font-style: normal;
 }
+.btn:hover{
+  color: black  ;
+  background: transparent;
+  cursor: pointer;
+  transform: scale(1.1);
+}
