@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 const Card = () => {
 
     const [card, setcard] = useState(JSON.parse(localStorage.getItem("card")) || []);
+    const [total,setotal] = useState(0)
 
     const remove = (i) => {
         const data = JSON.parse(localStorage.getItem("card"));
@@ -12,21 +13,21 @@ const Card = () => {
     }
 
     return (<>
-        <div className="container-fluid  d-flex gap-5 py-5 justify-content-center row mt-5">
+        <div className="container-fluid  d-flex flex-column gap-5 py-5 justify-content-center row mt-5">
             {card.map((pro, i) =>
-                <div key={i} className=" col-3 d-flex justify-content-center">
-                    <div className="card rounded-5  " style={{ width: "18rem", height: "auto", backgroundColor: "#FFF8E7" }}>
+                <div key={i} className=" col-3 d-flex justify-content-center" style={{width:"100%"}}>
+                    <div className="d-flex p-2 rounded-5" style={{ width: "90%", height: "auto", backgroundColor: "#FFF8E7" }}>
                         <img
                             src={pro.image}
                             className="card-img-top rounded-top-5 p-2"
                             style={{
-                                height: "200px",
-                                width: "100%",
+                                height: "300px",
+                                width: "auto",
                                 objectFit: "cover",
                                 display: "block"
                             }}
                         />
-                        <div className="card-body" style={{ height: "auto" }}>
+                        <div className="card-body d-flex flex-column mt-5" style={{ height: "auto" }}>
                             <h5 className="card-title">{pro.name}</h5>
                             <p className="card-text ">
                                 {
@@ -40,7 +41,7 @@ const Card = () => {
                                 {/* <button href="#" className="btn btn-success px-4">
                                     Buy
                                 </button> */}
-                                <button href="#" className="btn btn-danger w-100 px-4 mt-2" onClick={() => remove(i)}>
+                                <button href="#" className="btn btn-danger w-25 px-4 mt-2" onClick={() => remove(i)}>
                                     Remove
                                 </button>
                             </div>
@@ -48,6 +49,9 @@ const Card = () => {
                     </div>
                 </div>
             )}
+        </div>
+        <div className="d-flex justify-content-center fixed-bottom">
+            <h1 className="border border-2 border-dark rounded-2  p-1" style={{backgroundColor: "#FFF8E7"}}>Total : </h1>
         </div>
     </>)
 }

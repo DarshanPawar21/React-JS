@@ -13,7 +13,7 @@ const Nev = () => {
                                 <a className="nav-link font" aria-current="page" href="/">Home</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link font" href="/card">Card</a>
+                                <a className="nav-link font" href="/card">Cart</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link font" href="#">Abount Us</a>
@@ -22,6 +22,9 @@ const Nev = () => {
                     </div>
                 </div>
             </nav>
+        </div>
+        <div className="mt-5 d-flex justify-content-end me-5">
+            <button className="rounded-bottom mt-2 me-5 text-center btn border-black fs-6" style={{width:"80px",height:"35px" ,backgroundColor: "#FFF8E7"}}>More</button>
         </div>
     </>)
 }
