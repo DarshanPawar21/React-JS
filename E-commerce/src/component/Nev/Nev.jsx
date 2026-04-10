@@ -16,7 +16,7 @@ const Nev = () => {
                                 <a className="nav-link font" href="/card">Cart</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link font" href="#">Abount Us</a>
+                                <a className="nav-link font" href="https://react-js-alpha-three.vercel.app/">Abount Us</a>
                             </li>
                         </ul>
                     </div>

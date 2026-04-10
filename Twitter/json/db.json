@@ -1,0 +1,21 @@
+{
+  "tweets": [],
+  "users": [
+    {
+      "name": "Darshan Pawar",
+      "email": "dp7878038@gmail.com",
+      "phone": "9737313944",
+      "password": "123",
+      "id": "pGv7PDHnX1w"
+    },
+    {
+      "id": "gzSHMDfa__g"
+    },
+    {
+      "name": "raushan",
+      "email": "",
+      "id": "mrILsnUhBSU"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

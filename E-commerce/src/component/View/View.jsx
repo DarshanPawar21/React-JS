@@ -3,8 +3,8 @@ const View = () => {
     const { state } = useLocation();
     return (<>
 
-        <div className="" style={{ marginTop: "7%" }}> </div>
-        <div className=" rounded-5 d-flex col-12 justify-content-center container " style={{ width: "100%", height: "80vh", backgroundColor: "#FFF8E7" }}>
+        <div className="" style={{ marginTop: "4%" }}> </div>
+        <div className=" rounded-5 d-flex col-12 justify-content-center container " style={{ width: "100%", height: "75vh", backgroundColor: "#FFF8E7" }}>
             <img
                 src={state.image}
                 className="card-img-top rounded-top-5 p-2 d-flex align-content-center"
@@ -25,7 +25,7 @@ const View = () => {
                 <h5 className="card-title mt-2">Rating : {state.rating}</h5>
                 <h5 className="card-title mt-2">Stoke : {state.stock}</h5>
                 <div className="d-flex  gap-3  text-center">
-                    <a href="/home" className="btn btn-success mt-4" style={{ width: "90%" }}>
+                    <a href="/home" className="btn btn-secondary mt-4" style={{ width: "90%" }}>
                         Back
                     </a>
                 </div>
