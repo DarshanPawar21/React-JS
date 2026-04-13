@@ -5,16 +5,15 @@
       "name": "Darshan Pawar",
       "email": "dp7878038@gmail.com",
       "phone": "9737313944",
-      "password": "123",
-      "id": "pGv7PDHnX1w"
+      "password": "Darshan@2110",
+      "id": "92kLL72fSzI"
     },
     {
-      "id": "gzSHMDfa__g"
-    },
-    {
-      "name": "raushan",
-      "email": "",
-      "id": "mrILsnUhBSU"
+      "name": "manash",
+      "email": "manash123@gmail.com",
+      "phone": "123456",
+      "password": "Manash@2110",
+      "id": "J5eo2R5iIqo"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

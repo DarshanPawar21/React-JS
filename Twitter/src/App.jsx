@@ -1,10 +1,13 @@
-import SignUp from "../Component/signup/Signup"; 
+// import { router } from "json-server";
+import SignIn from "../component/SignIn/SignIn";
+import SignUp from "../component/SignUp/SignUp";
+import { Routes,Route } from "react-router";
 const App = () =>{
   return(
-    
-      <div>
-        <SignUp />
-      </div>
-    )
+    <Routes>
+      <Route path="/" element={<SignUp />} />
+      <Route path="/signin" element={<SignIn />} />
+    </Routes>
+  )
 }
 export default App;

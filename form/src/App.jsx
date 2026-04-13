@@ -5,15 +5,12 @@ import { BrowserRouter } from "react-router";
 import "./Component/Nev"
 import Nev from "./Component/Nev";
 
-import { Routes,Route } from "react-router";
+// import { Routes,Route } from "react-router";
 import User from "./Component/user";
 const App = () => {
   return (<>
     <Nev />
-      <Routes>
-        {/* <Route path="/" element={<Form />} /> */}
-        <Route path="/user" element={<User />} />
-      </Routes>
+    <User />
   </>)
 }
 export default App;
