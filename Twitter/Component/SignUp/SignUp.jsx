@@ -33,7 +33,7 @@ const SignUp = () => {
             </div>
             <div className="container" style={{ width: "40%" }}>
                 <div className="d-flex justify-content-center flex-column">
-                    <span className="text-center fs-1 fw-bolder.">Wellcome To Twitter</span>
+                    <span className="text-center fs-1 fw-bolder">Wellcome To Twitter</span>
                     <span className="text-center fs-1">Sign UP</span>
                 </div>
                 <form>
