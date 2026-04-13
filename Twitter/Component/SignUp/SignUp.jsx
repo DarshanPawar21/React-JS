@@ -29,7 +29,7 @@ const SignUp = () => {
     return (<>
         <div className="container-fluid d-flex flex-column align-items-center bg-primary text-white" style={{ width: "100%", height: "100vh" }}>
             <div className="">
-                <img style={{ width: "100%", height: "200px" }} src={bird} alt="" />
+                <img style={{ width: "100%", height: "210px" }} src={bird} alt="" />
             </div>
             <div className="container" style={{ width: "40%" }}>
                 <div className="d-flex justify-content-center flex-column">
