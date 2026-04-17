@@ -1,11 +1,83 @@
 {
   "tweets": [
     {
-       "text": "Consistency is everything when you're building. 💻 Whether it’s mastering the MERN stack or finally getting that React component to render perfectly, every small win counts.",
+      "text": "",
       "users": "Darshan Pawar",
       "email": "dp7878038@gmail.com",
       "time": "17/18/2081",
       "id": "aOq9o5fBR2A"
+    },
+    {
+      "text": "The grind never stops. 💻✨ From debugging complex MERN stack errors to mastering those React hooks, every line of code is a step closer to the goal.",
+      "users": "Darshan Pawar",
+      "email": "dp7878038@gmail.com",
+      "time": "5/3/2026  17 : 8",
+      "id": "DOyTi-wS9oU"
+    }
+  ],
+  "users": [
+    {
+      "name": "Darshan Pawar",
+      "email": "dp7878038@gmail.com",
+      "phone": "9737313944",
+      "password": "Darshan@2110",
+      "id": "92kLL72fSzI"
+    },
+    {
+      "name": "manash",
+      "email": "manash123@gmail.com",
+      "phone": "123456",
+      "password": "Manash@2110",
+      "id": "J5eo2R5iIqo"
+    },
+    {
+      "name": "Darshan Pawar",
+      "email": "dp7878038@gmail.com",
+      "phone": "9737313944",
+      "password": "Darshan@2110",
+      "id": "ChiCBlroh3M"
+    },
+    {
+      "name": "Darshan Pawar",
+      "email": "dp7878038@gmail.com",
+      "phone": "9737313944",
+      "password": "Darshan@2110",
+      "id": "EO0JekywXxc"
+    },
+    {
+      "name": "Darshan Pawar",
+      "email": "dp7878033@gmail.com",
+      "phone": "9737313944",
+      "password": "Darshan@2110",
+      "id": "LRDtv0hARf4"
+    },
+    {
+      "name": "Darshan Pawar",
+      "email": "dp7878031@gmail.com",
+      "phone": "9737313944",
+      "password": "Darshan@2210",
+      "id": "KVkVmgRwPoA"
+    },
+    {
+      "name": "Darshan Pawar",
+      "email": "dp7878039@gmail.com",
+      "phone": "9737313944",
+      "password": "Darshan@2210",
+      "id": "jHwn8ElkuLY"
+    },
+    {
+      "name": "Darshan Pawar",
+      "email": "dp7878037@gmail.com",
+      "phone": "9737313944",
+      "password": "Darshan@2210",
+      "id": "P5z3Ud4EaEw"
+    },
+    {
+      "name": "Darshan Pawar",
+      "email": "dp787804@gmail.com",
+      "phone": "9737313944",
+      "password": "Darshan@2110",
+      "id": "5Efx2owOTPA"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
