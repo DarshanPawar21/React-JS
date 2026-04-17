@@ -2,18 +2,24 @@ import axios from "axios";
 import { useState } from "react";
 import { user_api } from "../../utils/api.js"
 import bird from "../../src/assets/bird.png"
+import { Navigate, useNavigate } from "react-router";
 const SignUp = () => {
     const password = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
+    const navigate = useNavigate()
     const [user, setuser] = useState({});
     const [check, setcheck] = useState(false)
     const [eye, seteye] = useState(false)
-    const handlesignin = async () => {
+    const handlesignUp = async () => {
         const res = await axios.post(user_api, user);
+        Navigate("/Signin");
     }
-    const handlechcek = () => {
-        if (user.name == "" || user.name == undefined) {
-            alert("Enter the Name !");
+    const handlechcek = async () => {
+        // e.preventDefult();
+        const get_api = await axios.get(user_api);
+        const data = get_api.data.findIndex((e) => e.email == user.email)
+        if (data != -1) {
+            alert("Are You All Ready Signup !")
         }
         else if (user.email == "" || user.email == undefined) {
             alert("Enter the Email !");
@@ -21,20 +27,24 @@ const SignUp = () => {
         else if (!password.test(user.password)) {
             alert("Enter Stong Password !")
         }
+        else if (user.name == "" || user.name == undefined) {
+            alert("Enter the Name !");
+        }
         else {
-
-            <a href="/signin">{handlesignin()}</a>
+            // alert("Nahi nahi");
+            navigate("/signin")
+            handlesignUp();
         }
     }
     return (<>
-        <div className="container-fluid d-flex flex-column align-items-center bg-primary text-white" style={{ width: "100%", height: "100vh" }}>
+        <div className="container-fluid d-flex align-items-center bg-black text-white" style={{ width: "100%", height: "100vh" }}>
             <div className="">
-                <img style={{ width: "100%", height: "210px" }} src={bird} alt="" />
+                <img style={{ width: "100%", height: "460px" }} src={bird} alt="" />
             </div>
             <div className="container" style={{ width: "40%" }}>
                 <div className="d-flex justify-content-center flex-column">
-                    <span className="text-center fs-1 fw-bolder">Wellcome To Twitter</span>
-                    <span className="text-center fs-1">Sign UP</span>
+                    <span className="text-center fs-1 fw-bolder">Happenning now</span>
+                    <span className="text-center fs-3 fw-bolder">Join  Today</span>
                 </div>
                 <form>
                     <div className="mb-3">
@@ -64,10 +74,11 @@ const SignUp = () => {
                     </div>
                     <div className="mb-3 form-check">
                         <input type="checkbox" className="form-check-input" checked={check} onChange={() => setcheck(!check)} id="exampleCheck1" />
-                        <label className="form-check-label" for="exampleCheck1">Check me out</label>
+                        <label className="form-check-label align-items-center " for="exampleCheck1">By signing up, you agree to the Terms of Service and Privacy Policy, including Cookie Use.
+</label>
                     </div>
 
-                    <button type="submit" onClick={handlechcek} className={`btn btn-warning w-100 rounded-5 ${check ? "" : "disabled"}`}>Submit</button>
+                    <button type="onsubmit" onClick={handlechcek} className={`btn btn-warning w-100 rounded-5 ${check ? "" : "disabled"}`}>Submit</button>
                 </form>
             </div>
         </div>

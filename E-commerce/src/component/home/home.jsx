@@ -50,7 +50,7 @@ const Home = () => { // create home function.
                 <input style={{backgroundColor:"#FFF8E7"}} className="rounded-4 p-2" onChange={(e) => setsearch(e.target.value)} type="text" /> <button style={{width:"90px",height:"38px",backgroundColor:"#FFF8E7"}} onClick={searchproduct} className="btn border-2 border-dark">Search</button>
             </div>
             <div className="d-flex justify-content-center py-5 row gap-5">
-                {products.map((pro, i) => (<Product key={i} index={i} name={pro.title} image={pro.images[0]} dec={pro.description} price={pro.price} qty={qty} addtocard={CardAdd} cate={pro.category} rating={pro.rating} stock={pro.stock} />))}
+                {products.map((pro, i) => (<Product name={pro.title} image={pro.images[0]} dec={pro.description} price={pro.price} qty={qty} addtocard={CardAdd} cate={pro.category} rating={pro.rating} stock={pro.stock} />))}
             </div>
         </div>
     );

@@ -23,10 +23,11 @@ const SignIn = () => {
     }
 
     const handlesignin = () => {
-        const res = data.findIndex((e) => e.email == user.email && e.password == user.password)
+        const res = data.findIndex((e) => e.email == user.email && e.password == user.password && e.name == user.name)
         if (res != -1) {
+            localStorage.setItem("signin",JSON.stringify(user))
             console.log(res)
-            console.log(data)
+            // console.log(data)
             alert("you are signed in !")
             Navigate("/home")
         }
@@ -42,12 +43,16 @@ const SignIn = () => {
     }
 
     return (<>
-        <div className="container-fluid d-flex flex-column align-items-center bg-primary text-white" style={{ width: "100%", height: "100vh" }}>
+        <div className="container-fluid d-flex align-items-center bg-black text-white" style={{ width: "100%", height: "100vh" }}>
             <div className="">
-                <img style={{ width: "100%", height: "250px" }} src={bird} alt="" />
+                <img style={{ width: "100%",height: "400px" }} src={bird} alt="" />
             </div>
             <div className="container" style={{ width: "50%" }}>
                 <h1 className="text-center">Sign In</h1>
+                <div className="mb-3">
+                    <label htmlFor="email" className="form-label">Name :</label>
+                    <input type="email" onChange={(e) => setuser({ ...user, name: e.target.value })} className="form-control rounded-5" id="email" />
+                </div>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email :</label>
                     <input type="email" onChange={(e) => setuser({ ...user, email: e.target.value })} className="form-control rounded-5" id="email" />
@@ -66,7 +71,8 @@ const SignIn = () => {
                 </div>
                 <div className="mb-3 form-check">
                     <input type="checkbox" className="form-check-input" checked={check} onChange={() => setcheck(!check)} id="exampleCheck1" />
-                    <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+                    <label className="form-check-label" htmlFor="exampleCheck1">By signing up, you agree to the Terms of Service and Privacy Policy, including Cookie Use.
+</label>
                 </div>
 
                 <button type="submit" onClick={handlesignin} className={`btn btn-warning w-100 rounded-5 ${check ? "" : "disabled"}`}>Submit</button>

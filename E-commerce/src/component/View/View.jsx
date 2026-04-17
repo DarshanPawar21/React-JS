@@ -2,7 +2,6 @@ import { useLocation } from "react-router";
 const View = () => {
     const { state } = useLocation();
     return (<>
-
         <div className="" style={{ marginTop: "4%" }}> </div>
         <div className=" rounded-5 d-flex col-12 justify-content-center container " style={{ width: "100%", height: "75vh", backgroundColor: "#FFF8E7" }}>
             <img
@@ -29,11 +28,8 @@ const View = () => {
                         Back
                     </a>
                 </div>
-                
             </div>
         </div>
-
-
     </>)
 }
 export default View;
