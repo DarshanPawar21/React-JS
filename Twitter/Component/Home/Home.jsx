@@ -17,7 +17,7 @@ const Home = () => {
             text: text,
             users: users.name,
             email: users.email,
-            time: `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}  ${date.getHours()} : ${date.getMinutes()}`
+            time: `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}  ${date.getHours()}:${date.getMinutes()}`
         }
         const res = await axios.post(tweets_api, data)
         handlegettweet();

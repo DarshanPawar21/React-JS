@@ -5,8 +5,8 @@ import axios from "axios";
 import { Navigate, useNavigate } from "react-router";
 const SignIn = () => {
     // const data = user_api;
+    const navigate = useNavigate();
     
-    const Navigate = useNavigate();
     const [user, setuser] = useState({})
     const [data, setdata] = useState([])
     const [check, setcheck] = useState(false)
@@ -29,7 +29,7 @@ const SignIn = () => {
             console.log(res)
             // console.log(data)
             alert("you are signed in !")
-            Navigate("/home")
+            navigate("/home")
         }
         else if(user.email == "" && user.email == undefined){
             alert("Enter The Email !")
@@ -75,7 +75,7 @@ const SignIn = () => {
 </label>
                 </div>
 
-                <button type="submit" onClick={handlesignin} className={`btn btn-warning w-100 rounded-5 ${check ? "" : "disabled"}`}>Submit</button>
+                <button onClick={handlesignin} className={`btn btn-warning w-100 rounded-5 ${check ? "" : "disabled"}`}>Submit</button>
             </div>
         </div>
     </>)

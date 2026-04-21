@@ -2,39 +2,43 @@ import axios from "axios";
 import { useState } from "react";
 import { user_api } from "../../utils/api.js"
 import bird from "../../src/assets/bird.png"
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
+
 const SignUp = () => {
     const password = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     const navigate = useNavigate()
+
     const [user, setuser] = useState({});
     const [check, setcheck] = useState(false)
     const [eye, seteye] = useState(false)
     const handlesignUp = async () => {
         const res = await axios.post(user_api, user);
-        Navigate("/Signin");
+        navigate("/signin");
     }
     const handlechcek = async () => {
         // e.preventDefult();
-        const get_api = await axios.get(user_api);
-        const data = get_api.data.findIndex((e) => e.email == user.email)
-        if (data != -1) {
-            alert("Are You All Ready Signup !")
-        }
-        else if (user.email == "" || user.email == undefined) {
-            alert("Enter the Email !");
-        }
-        else if (!password.test(user.password)) {
-            alert("Enter Stong Password !")
-        }
-        else if (user.name == "" || user.name == undefined) {
-            alert("Enter the Name !");
-        }
-        else {
-            // alert("Nahi nahi");
-            navigate("/signin")
-            handlesignUp();
-        }
+        // const get_api = await axios.get(user_api);
+        // const data = get_api.data.findIndex((e) => e.email == user.email)
+        // if (data != -1) {
+        //     alert("Are You All Ready Signup !")
+        // }
+        // else if (user.email == "" || user.email == undefined) {
+        //     alert("Enter the Email !");
+        // }
+        // else if (!password.test(user.password)) {
+        //     alert("Enter Stong Password !")
+        // }
+        // else if (user.name == "" || user.name == undefined) {
+        //     alert("Enter the Name !");
+        // }
+        // else {
+            alert("Nahi nahi");
+            // handlesignUp();
+            // navigate("/signin");
+            const res = await axios.post(user_api, user);
+            navigate("/signin");
+        // }
     }
     return (<>
         <div className="container-fluid d-flex align-items-center bg-black text-white" style={{ width: "100%", height: "100vh" }}>
@@ -48,20 +52,20 @@ const SignUp = () => {
                 </div>
                 <form>
                     <div className="mb-3">
-                        <label for="name" className="form-label">Name :</label>
+                        <label htmlFor="name" className="form-label">Name :</label>
                         <input type="text" onChange={(e) => setuser({ ...user, name: e.target.value })} className="form-control rounded-5" id="name" aria-describedby="emailHelp" />
                         {/* <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div> */}
                     </div>
                     <div className="mb-3">
-                        <label for="email" className="form-label">Email :</label>
+                        <label htmlFor="email" className="form-label">Email :</label>
                         <input type="email" onChange={(e) => setuser({ ...user, email: e.target.value })} className="form-control rounded-5" id="email" />
                     </div>
                     <div className="mb-3">
-                        <label for="phone" className="form-label">Phone :</label>
+                        <label htmlFor="phone" className="form-label">Phone :</label>
                         <input type="number" onChange={(e) => setuser({ ...user, phone: e.target.value })} className="form-control rounded-5" id="phone" />
                     </div>
                     <div className="mb-3">
-                        <label for="password" className="form-label">Password :</label>
+                        <label htmlFor="password" className="form-label">Password :</label>
                         <div className="d-flex gap-3 align-items-center">
                             <input type={!eye ? `password` : `text`} style={{ width: "200%" }} onChange={(e) => setuser({ ...user, password: e.target.value })} className="form-control rounded-5" id="password" />
                             <div className="d-flex btn text-white" checked={eye} onClick={() => seteye(!eye)}>
@@ -74,11 +78,11 @@ const SignUp = () => {
                     </div>
                     <div className="mb-3 form-check">
                         <input type="checkbox" className="form-check-input" checked={check} onChange={() => setcheck(!check)} id="exampleCheck1" />
-                        <label className="form-check-label align-items-center " for="exampleCheck1">By signing up, you agree to the Terms of Service and Privacy Policy, including Cookie Use.
-</label>
+                        <label className="form-check-label align-items-center " htmlFor="exampleCheck1">By signing up, you agree to the Terms of Service and Privacy Policy, including Cookie Use.
+                        </label>
                     </div>
 
-                    <button type="onsubmit" onClick={handlechcek} className={`btn btn-warning w-100 rounded-5 ${check ? "" : "disabled"}`}>Submit</button>
+                    <button onClick={handlechcek} className={`btn btn-warning w-100 rounded-5 ${check ? "" : "disabled"}`}>Submit</button>
                 </form>
             </div>
         </div>
