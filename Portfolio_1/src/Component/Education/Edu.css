@@ -1,3 +1,89 @@
 .bor{
     border: 2px solid rgb(149, 255, 0);
 }
+.container-custom {
+    width: 100%;
+    padding: 20px;
+    margin: auto;
+}
+
+/* Desktop */
+@media (min-width: 992px) {
+    .container-custom {
+        max-width: 1200px;
+    }
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+    .container-custom {
+        max-width: 90%;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .container-custom {
+        padding: 10px;
+    }
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+h1 {
+    font-size: 32px;
+}
+
+p {
+    font-size: 16px;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    h1 {
+        font-size: 22px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
+.card-custom {
+    padding: 20px;
+    border-radius: 15px;
+    background: #f8f9fa;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .card-custom {
+        padding: 12px;
+    }
+}
+.navbar {
+    padding: 10px 20px;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+}

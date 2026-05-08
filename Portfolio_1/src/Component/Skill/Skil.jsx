@@ -1,53 +1,36 @@
-import "../Hero/Hero.css"
+import "../Hero/Hero.css";
+
+const skills = [
+  "HTML",
+  "CSS",
+  "Media Query",
+  "Bootstrap",
+  "C Language",
+  "JavaScript",
+  "React JS",
+  "C++",
+  "Python"
+];
+
 const Skills = () => {
-    return <>
-        <div className="container" id="Ski">
-            <div className="f text-center mt-5" >
-                Skills
-            </div>
-            <div>
-                <div class="container text-center mt-4 mb-5">
-                    <div class="row gap-5">
-                        <div className="col btn bt1 text-white btn-outline-warning">
-                            <a href="https://github.com/DarshanPawar21/My-Work" className="text-decoration-none text-white">HTML</a>
-                        </div>
-                        <div className="col btn bt1 text-white btn-outline-warning">
-                            <a href="https://github.com/DarshanPawar21/CSS-Projects" className="text-decoration-none text-white">CSS</a>
-                        </div>
-                    </div>
-                    <div class="row mt-3 gap-5">
-                        <div className="col btn bt1 text-white btn-outline-warning">
-                            Media Query
-                        </div>
-                        <div className="col btn bt1 text-white btn-outline-warning">
-                            BootStrap
-                        </div>
-                        <div className="col btn bt1 text-white btn-outline-warning">
-                            C Language
-                        </div>
-                    </div>
-                    <div class="row mt-3 gap-5">
-                        <div className="col btn bt1 text-white btn-outline-warning">
-                            Java Script
-                        </div>
-                        <div className="col btn bt1 text-white btn-outline-warning">
-                            React JS
-                        </div>
-                    </div>
-                    <div class="row mt-3 gap-5">
-                        <div className="col btn bt1 text-white btn-outline-warning">
-                            C++
-                        </div>
-                        <div className="col btn bt1 text-white btn-outline-warning">
-                            Pythan
-                        </div>
-                        <div className="col btn bt1 text-white btn-outline-warning">
-                            C Language
-                        </div>
-                    </div>
-                </div>
-            </div>
+  return (
+    <section className="section-block" id="Ski">
+      <div className="container">
+        <h2 className="section-title text-center">Skills</h2>
+        <div className="skills-grid mt-4">
+          {skills.map((skill) => (
+            <a
+              className="skill-pill"
+              href="https://github.com/DarshanPawar21/My-Work"
+              key={skill}
+            >
+              {skill}
+            </a>
+          ))}
         </div>
-    </>
-}
+      </div>
+    </section>
+  );
+};
+
 export default Skills;

@@ -1,18 +1,21 @@
-import "../Hero/Hero.css"
-const Footer = () => {
-    return (<>
-        <div className="container-fluid">
-            <div className="text-white d-flex justify-content-center gap-4 mt-5">
-                <span>Home</span>
-                <span>Education</span>
-                <span>Project</span>
-                <span>Skills</span>
+import "../Hero/Hero.css";
 
-            </div>
-            <div className="onli mt-2" style={{ width:"100%"}}>
-            </div>
-            <span className="text-white mb-5 d-flex justify-content-center mt-1">Â© 2025 Company, Inc</span>
+const Footer = () => {
+  return (
+    <footer className="site-footer">
+      <div className="container">
+        <div className="footer-links">
+          <a href="#home">Home</a>
+          <a href="#Education">Education</a>
+          <a href="#Pro">Project</a>
+          <a href="#Ski">Skills</a>
+          <a href="#Cont">Contact</a>
         </div>
-    </>)
-}
+        <div className="footer-line" />
+        <p>© 2025 Darshan Pawar</p>
+      </div>
+    </footer>
+  );
+};
+
 export default Footer;
