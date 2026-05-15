@@ -1,37 +1,19 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice } from "@reduxjs/toolkit";
 
-export const fetchapi = createAsyncThunk("apiPost",async()=>{
-    const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
-    return res.data
-});
-
-const post_api = createSlice({
-    name:"posts",
-    initialState:{
-        posts:[],
-        status:"idle",
-        error: null,
+const Counterslice = createSlice({
+    name:"counter",
+    initialState: {
+        value: 0,
     },
-    reducers:{},
-    extraReducers:(builder)=>{
-        builder.addCase(fetchapi.pending,
-            (state)=>{
-                state.status ="loading";
+    reducers : {
+        increment: (state)=>{state.value += 1;},
+        decrement : (state)=>{
+            if(state.value > 0){
+                state.value -= 1;
             }
-        );
-        builder.addCase(fetchapi.fulfilled,
-            (state,action)=>{
-                state.status = "successded",
-                state.posts = action.payload
-            }
-        );
-        builder.addCase(fetchapi.rejected,
-            (state,action)=>{
-                state.status = "failed";
-                state.error = action.error.message;
-            }
-        );
+        },
     },
 });
-export default post_api.reducer;
+
+export const {increment,decrement} = Counterslice.actions;
+export default Counterslice.reducer;

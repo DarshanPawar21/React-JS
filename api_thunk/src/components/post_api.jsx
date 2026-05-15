@@ -1,25 +1,15 @@
-import { useEffect, useState } from "react";
 import { useSelector,useDispatch } from "react-redux";
-import fetchaip from "../slices/api.js"
-
-const Post = ()=>{
-    const {posts,status,error} = useSelector((state)=>state.posts)
+import { increment,decrement } from "../slices/api.js";
+function counter() {
+    const count = useSelector((state)=> state.counter.value);
     const dispatch = useDispatch();
 
-    useEffect(()=>{
-        dispatch(fetchaip());
-    },[dispatch]);
-
-    return(
-        <div>
-            {
-                posts.map((post,i)=>{
-                    <div key={i}>
-                        <h1>{post.titile}</h1>
-                    </div>
-                })
-            }
+    return(<>
+        <div className="container-fluid">
+            <h1>{count}</h1>
+            <button className="btn btn-primary me-2" onClick={()=>dispatch(increment())}>1++</button>
+            <button className="btn btn-primary" onClick={()=>dispatch(decrement())}>1--</button>
         </div>
-    )
+    </>)
 }
-export default Post;
+export default counter;

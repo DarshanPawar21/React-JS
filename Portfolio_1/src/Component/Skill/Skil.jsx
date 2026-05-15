@@ -6,7 +6,7 @@ const skills = [
   "Media Query",
   "Bootstrap",
   "C Language",
-  "JavaScript",
+  "JavaScript + TypeScript",
   "React JS",
   "C++",
   "Python"
