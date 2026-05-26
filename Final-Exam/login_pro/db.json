@@ -11,6 +11,12 @@
       "email": "rouhangoswami13@gmail.com",
       "password": "rahul@123",
       "id": "Ds0kj3dAGso"
+    },
+    {
+      "name": "Roushan Goswami",
+      "email": "rouhangoswam13@gmail.com",
+      "password": "242132",
+      "id": "CVO8DGApwuc"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

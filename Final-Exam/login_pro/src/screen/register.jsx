@@ -11,11 +11,7 @@ const Register = () => {
 
     const { isLoading, error, message } = useSelector((state) => state.auth);
 
-    const handleChange = (e) => {
-        // e.target se name aur value dono nikaal rahe hain
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+    const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -32,39 +28,35 @@ const Register = () => {
     }, [isLoading, message, dispatch, navigate]);
 
     return (
-        <div className="container-fluid d-flex flex-column align-items-center justify-content-center" style={{height: "100vh", width: "100vw", backgroundImage: `url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat"}}>
-            <div className="p-4 rounded-4 shadow" style={{ backgroundColor: "rgba(255, 255, 255, 0.90)", width: "100%", maxWidth: "600px" }}>
-                <h2 className='text-center mb-4' style={{ color: '#333' }}>Register</h2>
+        <div className="container-fluid d-flex flex-column align-items-center justify-content-center" style={{height: "100vh",width: "100vw", backgroundImage: `url(${bgImage})`,backgroundSize: "cover",backgroundPosition: "center",backgroundRepeat: "no-repeat"}}>
+            <div 
+                className="p-4 rounded-4 p-5 shadow" 
+                style={{ backgroundColor: "rgba(255, 255, 255, 0.90)", width: "100%", maxWidth: "400px" }}>
+                <h2 className='text-center mb-4' style={{ color: '#333' }}>Sign Up (Register)</h2>
                 {isLoading === "failed" && (<p className="alert alert-danger text-center p-2 small">{error}</p>)}
-                
                 <form onSubmit={handleSubmit}>
-                    {/* 1. Full Name Input (Added name="name") */}
                     <div className="mb-3">
                         <label className="form-label fw-semibold">Full Name:</label>
-                        <input name="name" type="text" className="form-control" value={formData.name} onChange={handleChange} placeholder="Enter your full name"/>
+                        <input type="text" className="form-control"  value={formData.name} onChange={handleChange} placeholder="Enter your full name"/>
                     </div>
-                    
-                    {/* 2. Email Input (Added name="email") */}
                     <div className="mb-3">
                         <label className="form-label fw-semibold">Email Address:</label>
-                        <input name="email" type="email" className="form-control" value={formData.email} onChange={handleChange} placeholder="example@mail.com"/>
+                        <input type="email" className="form-control" value={formData.email} onChange={handleChange} placeholder="example@mail.com"/>
                     </div>
-                    
-                    {/* 3. Password Input (Added name="password") */}
                     <div className="mb-4">
                         <label className="form-label fw-semibold">Password:</label>
-                        <input name="password" type="password" className="form-control" value={formData.password} onChange={handleChange} placeholder="******"/>
+                        <input  type="password" className="form-control"  value={formData.password} onChange={handleChange} placeholder="******"/>
                     </div>
-                    
                     <button type="submit" className="btn btn-primary w-100 py-2 fw-bold" disabled={isLoading === "Loading"}>
-                        {isLoading === "Loading" && <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>}
+                        {isLoading === "Loading" ? (
+                            <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                        ) : null}
                         {isLoading === "Loading" ? 'Registering...' : 'Register'}
                     </button>
                 </form>
-                
                 <div className="text-center mt-3 small">
                     <span>Already have an account? </span>
-                    <button type="button" onClick={() => navigate('/login')} className="btn btn-link p-0 pb-1 text-decoration-underline fw-medium" style={{ verticalAlign: 'baseline' }}>
+                    <button type="button" onClick={() => navigate('/login')} className="btn btn-link p-0 pb-1 text-decoration-underline fw-medium"style={{ verticalAlign: 'baseline' }}>
                         Login here
                     </button>
                 </div>
@@ -72,5 +64,4 @@ const Register = () => {
         </div>
     );
 };
-
 export default Register;
