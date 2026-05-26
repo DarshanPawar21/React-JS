@@ -4,10 +4,11 @@ import { API_URL } from "../utils/user";
 
 export const loginUser = createAsyncThunk("auth/login", async (loginData) => {
   const res = await axios.get(API_URL);
+  const usersArray = Array.isArray(res.data) ? res.data : res.data.users || [];
   const user = res.data.find((u) => u.email === loginData.email && u.password === loginData.password);
-  if (!user) {
-    return { isError: true, errorMsg: "Invalid Email or Password !" };
-  }
+if (!user) {
+  return { isError: true, errorMsg: "Invalid Email or Password !" };
+}
   localStorage.setItem("user", JSON.stringify(user));
   return { isError: false, data: user };
 });
@@ -44,5 +45,6 @@ const loginSlice = createSlice({
       });
   },
 });
+
 export const { resetLogin, logoutUser } = loginSlice.actions;
 export default loginSlice.reducer;

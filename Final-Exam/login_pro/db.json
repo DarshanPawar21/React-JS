@@ -4,19 +4,13 @@
       "name": "Darshan Pawar",
       "email": "dp7878038@gmail.com",
       "password": "Darshan@2110",
-      "id": "pjWkV6EvBmg"
+      "id": "ur-Lno9buVw"
     },
     {
-      "name": "rahul ",
-      "email": "rouhangoswami13@gmail.com",
-      "password": "rahul@123",
-      "id": "Ds0kj3dAGso"
-    },
-    {
-      "name": "Roushan Goswami",
-      "email": "rouhangoswam13@gmail.com",
+      "name": "Darshan Pawar aababhai",
+      "email": "dp7878032@gmail.com",
       "password": "242132",
-      "id": "CVO8DGApwuc"
+      "id": "zIVmfKdVGRU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
