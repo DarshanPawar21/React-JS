@@ -34,7 +34,7 @@ const SignUp = () => {
         // }
         // else {
             alert("Nahi nahi");
-            // handlesignUp();
+            handlesignUp();
             // navigate("/signin");
             const res = await axios.post(user_api, user);
             navigate("/signin");

@@ -2,9 +2,15 @@ import { useSelector, useDispatch } from "react-redux"
 import { add_todo, remove_todo, update_todo } from "../features/Todo_slice";
 import { useState } from "react";
 const Todo = () => {
-    const todolist = useSelector((state) => state.todo.todo)
+    const todolist = useSelector((state) => state.todo.todos || []);
     const dispatch = useDispatch();
     const [text, settext] = useState("")
+    const handleupdate = (i,oldtext) => {
+        const newtext = prompt("Enter new todo text:", oldtext);
+        if(newtext != null && newtext != ""){
+            dispatch(update_todo({i,text : newtext}))
+        }
+    }
     return (<>
         <div>
             <h1 className="text-center mt-5">Your Todo</h1>
@@ -24,7 +30,7 @@ const Todo = () => {
                                 <h5 className="card-title">{todo.text}</h5>
                                 <div className="d-flex gap-3">
                                     <button className="btn btn-danger" onClick={() => dispatch(remove_todo(i))}>Remove</button>
-                                    <button className="btn btn-primary" onClick={(e) => settext(todo.text)}>Update</button>
+                                    <button className="btn btn-primary" onClick={() => handleupdate(i,todo.text)}>Update</button>
                                 </div>
                             </div>
                         </div>
