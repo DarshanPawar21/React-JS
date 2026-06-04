@@ -140,6 +140,11 @@
 .section-block {
   padding: 84px 0;
   background: #050505;
+  transition: background 0.35s ease;
+}
+
+.section-block:hover {
+  background: #070707;
 }
 
 .section-title,
@@ -157,6 +162,16 @@
   background: #090909;
   color: #ffffff;
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.28);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
+}
+
+.info-card:hover,
+.project-card:hover,
+.contact-form:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 26px 60px rgba(245, 108, 0, 0.2);
+  border-color: rgba(245, 108, 0, 0.95);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .info-card {
