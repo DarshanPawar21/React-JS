@@ -7,12 +7,6 @@ import s5 from "../../assets/s5.png";
 import s6 from "../../assets/s6.png";
 
 const projects = [
-    {
-    title:"HRMS",
-    image:s6,
-    linkL:"https://drive.google.com/file/d/14tLbJCI6QasGYIoC_J1W3ajFagb4LhoE/view",
-    text:"A human resource management system (HRMS) designed to streamline employee data, attendance, and leave management for efficient HR operations."
-  },
   {
     title: "Todo",
     image: s1,
@@ -50,7 +44,24 @@ const Project = () => {
     <section className="section-block" id="Pro">
       <div className="container">
         <h2 className="section-title text-center">Project</h2>
+        
         <div className="row g-4 mt-2">
+          {/* HRMS Project - Full Width (पूरा बड़ा) */}
+          <div className="col-12">
+            {/* यहाँ hrms-large-card क्लास जोड़ी है */}
+            <article className="project-card hrms-large-card h-100">
+              <img src={s6} alt="HRMS Project" />
+              <div className="project-body">
+                <h3 className="text-center">HRMS</h3>
+                <p className="text-center">A human resource management system (HRMS) designed to streamline employee data, attendance, and leave management for efficient HR operations.</p>
+                <a className="btn accent-btn w-100" href="https://drive.google.com/file/d/14tLbJCI6QasGYIoC_J1W3ajFagb4LhoE/view" target="_blank" rel="noopener noreferrer">
+                  Go To
+                </a>
+              </div>
+            </article>
+          </div>
+
+          {/* Remaining Projects - Grid Layout */}
           {projects.map((project) => (
             <div className="col-12 col-md-6 col-xl-4" key={project.title}>
               <article className="project-card h-100">
@@ -58,12 +69,15 @@ const Project = () => {
                 <div className="project-body">
                   <h3>{project.title}</h3>
                   <p>{project.text}</p>
-                  <a className="btn accent-btn" href={project.link}>Go To</a>
+                  <a className="btn accent-btn" href={project.link} target="_blank" rel="noopener noreferrer">
+                    Go To
+                  </a>
                 </div>
               </article>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );
