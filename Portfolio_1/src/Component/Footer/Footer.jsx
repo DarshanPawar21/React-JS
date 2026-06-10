@@ -12,7 +12,7 @@ const Footer = () => {
           <a href="#Cont">Contact</a>
         </div>
         <div className="footer-line" />
-        <p>© 2025 Darshan Pawar</p>
+        <p>ï¿½ 2025 Darshan Pawar</p>
       </div>
     </footer>
   );

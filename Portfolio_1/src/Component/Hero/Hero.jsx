@@ -1,10 +1,10 @@
 import p1 from "../../assets/p1.jpg";
 import "./Hero.css";
-
+import {motion} from "framer-motion";
 const Hero = () => {
   return (
     <header className="hero-section" id="home">
-      <div className="container">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="container">
         <div className="row align-items-center gy-5">
           <div className="col-lg-6 order-2 order-lg-1">
             <span className="hero-kicker">Hey I am</span>
@@ -27,7 +27,7 @@ const Hero = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </header>
   );
 };
