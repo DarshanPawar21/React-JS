@@ -3,13 +3,14 @@ import { add_todo, remove_todo, update_todo } from "../features/Todo_slice";
 import { useState } from "react";
 const Todo = () => {
     const todolist = useSelector((state) => state.todo.todos || []);
+    // const todolist = localStorage.getItem("todos")
     const dispatch = useDispatch();
     const [text, settext] = useState("")
     const handleupdate = (i,oldtext) => {
         const newtext = prompt("Enter new todo text:", oldtext);
-        if(newtext != null && newtext != ""){
-            dispatch(update_todo({i,text : newtext}))
-        }
+            if(newtext != null && newtext != ""){
+                dispatch(update_todo({i,text : newtext}))
+            }
     }
     return (<>
         <div>
