@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { Nav } from "./nav";
 // import "../components/sty"
+import { pushForm } from "../slices/sign_up";
+import { useDispatch,useSelector } from "react-redux";
+
+const handleform = ()=>{
+  
+}
 const Sign_up = () => {
   return (<>
     <Nav />
@@ -12,7 +18,7 @@ const Sign_up = () => {
               <h1>SIGN UP</h1>
               <div className="d-flex gap-2" style={{width:"100%"}}>
                 <label className="fs-4" htmlFor="">Name:</label>
-                <input className="form-control" type="text" />
+                <input onChange={} className="form-control" type="text" />
               </div>
               <div className="d-flex gap-2" style={{width:"100%"}}>
                 <label className="fs-4" htmlFor="">Email:</label>
