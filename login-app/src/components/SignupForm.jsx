@@ -5,6 +5,7 @@ import { pushForm } from "../slices/sign_up";
 import { useDispatch,useSelector } from "react-redux";
 
 const handleform = ()=>{
+  const [data,setdata] = useState([]);
   
 }
 const Sign_up = () => {
@@ -18,11 +19,11 @@ const Sign_up = () => {
               <h1>SIGN UP</h1>
               <div className="d-flex gap-2" style={{width:"100%"}}>
                 <label className="fs-4" htmlFor="">Name:</label>
-                <input onChange={} className="form-control" type="text" />
+                <input onChange={(e)=>setdata(e.target.value)} className="form-control" type="text" />
               </div>
               <div className="d-flex gap-2" style={{width:"100%"}}>
                 <label className="fs-4" htmlFor="">Email:</label>
-                <input className="form-control" type="email" />
+                <input onChange={(e)=>} className="form-control" type="email" />
               </div>
               <div className="d-flex gap-2" style={{width:"100%"}}>
                 <label className="fs-4" htmlFor="">Phone:</label>
