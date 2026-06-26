@@ -1,10 +1,18 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Test User",
       "email": "test@example.com",
       "password": "password123"
+    },
+    {
+      "name": "Darshan Pawar",
+      "email": "dp7878033@gmail.com",
+      "phone": "7878033136",
+      "password": "Darshan@2111",
+      "id": "YPL4wbj5eaw"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

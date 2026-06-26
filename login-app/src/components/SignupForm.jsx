@@ -2,38 +2,51 @@ import { useState } from "react";
 import { Nav } from "./nav";
 // import "../components/sty"
 import { pushForm } from "../slices/sign_up";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-const handleform = ()=>{
-  const [data,setdata] = useState([]);
-  
-}
+// console.log(data);
+
 const Sign_up = () => {
+  // console.log(data)
+  const [data, setdata] = useState({});
+  const dispatch = useDispatch();
+
+  const handleform = async () => {
+    if (data.name && data.email && data.phone && data.password) {
+        await dispatch(pushForm(data));
+        alert("Data saved to db.json successfully");
+        setdata({});
+    } else {
+      alert("Please fill in all fields");
+    }
+  };
+
   return (<>
     <Nav />
     <div className="container-fluid" style={{ width: "100%" }}>
       <div className="d-flex justify-content-center align-items-center" style={{ width: "100%", height: "92vh" }}>
         <div className="bg-light border border-black rounded-4" style={{ width: "900px", height: "400px" }}>
-          <div className="d-flex justify-content-center align-items-center" style={{width:"100%",height:"100%"}}>
-            <div className="d-flex flex-column gap-3 align-items-center p-4" style={{width:"100%", height:"auto"}}>
+          <div className="d-flex justify-content-center align-items-center" style={{ width: "100%", height: "100%" }}>
+            <div className="d-flex flex-column gap-3 align-items-center p-4" style={{ width: "100%", height: "auto" }}>
               <h1>SIGN UP</h1>
-              <div className="d-flex gap-2" style={{width:"100%"}}>
+              <div className="d-flex gap-2" style={{ width: "100%" }}>
                 <label className="fs-4" htmlFor="">Name:</label>
-                <input onChange={(e)=>setdata(e.target.value)} className="form-control" type="text" />
+                <input value={data.name || ""} onChange={(e) => setdata({ ...data, name: e.target.value })} className="form-control" type="text" />
               </div>
-              <div className="d-flex gap-2" style={{width:"100%"}}>
+              <div className="d-flex gap-2" style={{ width: "100%" }}>
                 <label className="fs-4" htmlFor="">Email:</label>
-                <input onChange={(e)=>} className="form-control" type="email" />
+                <input value={data.email || ""} onChange={(e) => setdata({ ...data, email: e.target.value })} className="form-control" type="email" />
               </div>
-              <div className="d-flex gap-2" style={{width:"100%"}}>
+              <div className="d-flex gap-2" style={{ width: "100%" }}>
                 <label className="fs-4" htmlFor="">Phone:</label>
-                <input className="form-control" type="number" />
+                <input value={data.phone || ""} onChange={(e)=>setdata({ ...data, phone: e.target.value })} className="form-control" type="number" />
               </div>
-              <div className="text-center" style={{width:"70%"}}>
+              <div className="text-center" style={{ width: "70%" }}>
                 <label className="fw-bolder" htmlFor="">Create a New Password :</label>
-                <input className="form-control" type="text" />
+                <input value={data.password || ""} onChange={(e) => setdata({ ...data, password: e.target.value })} className="form-control" type="password" />
               </div>
-            </div>
+              <button onClick={handleform} className="btn btn-primary">Sign UP</button>
+            </div> 
           </div>
         </div>
       </div>
