@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "name": "Rahul Sharma",
+      "email": "rahul@gmail.com",
+      "password": "123456",
+      "id": "XasmrLVDOCU"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

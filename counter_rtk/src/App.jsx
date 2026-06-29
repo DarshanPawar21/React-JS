@@ -1,9 +1,4 @@
-import Counter from "./components/counter.jsx"
-const App = () => {
-  return (
-    <div>
-      <Counter />
-    </div>
-  )
+const App = () =>{
+  return(<></>)
 }
 export default App;

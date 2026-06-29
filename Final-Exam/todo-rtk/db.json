@@ -1,0 +1,47 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "title": "React ભણવું",
+      "completed": true
+    },
+    {
+      "id": "2",
+      "title": "Redux શીખવું",
+      "completed": false
+    },
+    {
+      "title": "g",
+      "id": "GsT9-IvFRSk"
+    },
+    {
+      "title": "h",
+      "id": "_Gj5IlBdFhc"
+    },
+    {
+      "title": "h",
+      "id": "GZwcW9AWhY0"
+    },
+    {
+      "title": "hh",
+      "id": "HYX4oPcLatY"
+    },
+    {
+      "title": "d",
+      "id": "fkVaV9hZgN4"
+    },
+    {
+      "title": "d",
+      "id": "f3aY_Xst2Uc"
+    },
+    {
+      "title": "d",
+      "id": "7y6JGee0icE"
+    },
+    {
+      "title": "d",
+      "id": "hLQIpoDpmng"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
