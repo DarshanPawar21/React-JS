@@ -14,7 +14,7 @@ const skills = [
   "Python",
   "Node JS",
   "Mongo DB",
-  "SQLite",
+  "SQLite.",
 ];
 
 const Skills = () => {
