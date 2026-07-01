@@ -9,11 +9,12 @@ const skills = [
   "C Language",
   "JavaScript + TypeScript",
   "React JS",
+  "Next JS",
   "C++",
   "Python",
   "Node JS",
   "Mongo DB",
-  "SQL",
+  "SQLite",
 ];
 
 const Skills = () => {
