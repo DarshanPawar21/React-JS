@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap");
+
+:root {
+  --cbs-navy-950: #0a0e1a;
+  --cbs-navy-900: #0f1729;
+  --cbs-navy-800: #16213a;
+  --cbs-navy-700: #1f2d4d;
+  --cbs-gold-500: #c9a227;
+  --cbs-gold-400: #ddc25f;
+  --cbs-slate-400: #94a3b8;
+  --cbs-emerald-500: #22c55e;
+  --cbs-navbar-height: 64px;
+}
+
+.cbs-navbar {
+  background: linear-gradient(135deg, var(--cbs-navy-950) 0%, var(--cbs-navy-900) 55%, var(--cbs-navy-800) 100%);
+  border-bottom: 1px solid var(--cbs-gold-500);
+  box-shadow: 0 4px 20px rgba(10, 14, 26, 0.35);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+.cbs-navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+}
+
+.cbs-navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cbs-navbar__badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--cbs-gold-400), var(--cbs-gold-500));
+  color: var(--cbs-navy-950);
+}
+.cbs-navbar__badge svg {
+  width: 22px;
+  height: 22px;
+}
+
+.cbs-navbar__titles {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.cbs-navbar__title {
+  font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.01em;
+}
+
+.cbs-navbar__subtitle {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--cbs-gold-400);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-top: 2px;
+}
+
+.cbs-navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cbs-navbar__status {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  color: var(--cbs-slate-400);
+  padding: 0.4rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  white-space: nowrap;
+}
+
+.cbs-navbar__status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cbs-emerald-500);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.18);
+  animation: cbs-pulse 2.2s ease-in-out infinite;
+}
+
+.cbs-navbar__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: "20px";
+  height: auto;
+  padding: 20%;
+  border-radius:20%;
+  background: var(--cbs-navy-700);
+  border: 1px solid var(--cbs-gold-500);
+  color: var(--cbs-gold-400);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+@keyframes cbs-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.18);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.06);
+  }
+}
+
+@media (max-width: 640px) {
+  .cbs-navbar__subtitle,
+  .cbs-navbar__status {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cbs-navbar__status-dot {
+    animation: none;
+  }
+}

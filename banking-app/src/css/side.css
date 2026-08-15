@@ -1,0 +1,42 @@
+.simple-sidebar {
+  width: 280px;
+  min-width: 240px;
+  background: #0f1729;
+  color: white;
+  padding: 24px 20px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  min-height: calc(100vh - var(--cbs-navbar-height));
+  border-radius: 0 18px 18px 0;
+}
+
+.simple-sidebar__header h2 {
+  margin: 0 0 24px;
+  font-size: 24px;
+}
+
+.simple-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.simple-sidebar__link {
+  display: block;
+  text-decoration: none;
+  color: #dbe4f0;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #1e293b;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.simple-sidebar__link:hover,
+.simple-sidebar__link--active {
+  background: #2563eb;
+  color: #fff;
+}
+
+.simple-sidebar__link--active {
+  font-weight: 700;
+}

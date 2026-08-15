@@ -1,0 +1,255 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap");
+
+:root {
+  --cbs-navy-950: #0a0e1a;
+  --cbs-navy-800: #16213a;
+  --cbs-gold-500: #c9a227;
+  --cbs-slate-100: #f1f5f9;
+  --cbs-slate-200: #e2e6ec;
+  --cbs-slate-500: #64748b;
+  --cbs-red-500: #ef4444;
+  --cbs-blue-600: #2563eb;
+}
+
+/* Container */
+.cbs-branches {
+  font-family: "Inter", system-ui, sans-serif;
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header Section */
+.cbs-branches__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.cbs-branches__title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--cbs-navy-950);
+  margin: 0;
+}
+
+.cbs-branches__subtitle {
+  font-size: 0.875rem;
+  color: var(--cbs-slate-500);
+  margin: 0.25rem 0 0 0;
+}
+
+/* Primary Button (Add Branch) */
+.cbs-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.cbs-btn--primary {
+  background: linear-gradient(135deg, var(--cbs-gold-500), #b8901f);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(201, 162, 39, 0.2);
+}
+
+.cbs-btn--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(201, 162, 39, 0.3);
+}
+
+.cbs-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Toolbar (Search & Count) */
+.cbs-branches__toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  gap: 1rem;
+}
+
+.cbs-search {
+  position: relative;
+  flex: 1;
+  max-width: 400px;
+}
+
+.cbs-search svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--cbs-slate-500);
+}
+
+.cbs-search input {
+  width: 100%;
+  padding: 0.6rem 1rem 0.6rem 2.4rem;
+  border: 1px solid var(--cbs-slate-200);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  outline: none;
+  background-color: #ffffff;
+  color: var(--cbs-navy-950);
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cbs-search input:focus {
+  border-color: var(--cbs-gold-500);
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.15);
+}
+
+.cbs-branches__count {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cbs-slate-500);
+  background-color: var(--cbs-slate-100);
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+}
+
+/* Table Card Wrapper */
+.cbs-card--table {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 41, 0.08);
+  box-shadow: 0 4px 20px rgba(10, 14, 26, 0.03);
+  overflow: hidden;
+}
+
+.cbs-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Table Styling */
+.cbs-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.cbs-table th {
+  background-color: #f8fafc;
+  color: var(--cbs-navy-800);
+  font-weight: 600;
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--cbs-slate-200);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.cbs-table td {
+  padding: 1rem 1.25rem;
+  color: var(--cbs-navy-950);
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.cbs-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.cbs-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.cbs-table__muted {
+  color: var(--cbs-slate-500);
+  font-weight: 500;
+}
+
+.cbs-table__mono {
+  font-family: monospace;
+  font-weight: 600;
+  color: var(--cbs-navy-800);
+}
+
+/* Action Column & Buttons */
+.cbs-table__action-col {
+  text-align: right;
+}
+
+.cbs-table__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.cbs-icon-btn {
+  background: transparent;
+  border: 1px solid var(--cbs-slate-200);
+  border-radius: 6px;
+  padding: 0.4rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.cbs-icon-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Edit Button */
+.cbs-icon-btn--edit {
+  color: var(--cbs-blue-600);
+}
+
+.cbs-icon-btn--edit:hover {
+  background-color: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+/* Delete Button */
+.cbs-icon-btn--delete {
+  color: var(--cbs-red-500);
+}
+
+.cbs-icon-btn--delete:hover {
+  background-color: #fef2f2;
+  border-color: #fecaca;
+}
+
+/* Responsive Styles */
+@media (max-width: 640px) {
+  .cbs-branches__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cbs-branches__toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cbs-search {
+    max-width: 100%;
+  }
+
+  .cbs-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
