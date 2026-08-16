@@ -11,7 +11,7 @@ function Branch() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { loading, error, loginMessage, isAuthenticated } = useSelector((state) => state.addbranchs)
+    const { loading, error, loginMessage, isAuthenticated } = useSelector((state) => state.addbranchs);
 
     const [branch, setBranch] = useState({
         branchName: "",

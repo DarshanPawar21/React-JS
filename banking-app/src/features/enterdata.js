@@ -41,14 +41,14 @@ export const loginAdmin = createAsyncThunk(
 
 export const branchadding = createAsyncThunk(
     "adding/branch",
-    async ({branchName,branchCity,IFSCCode,branchPhone}) => {
+    async ({ branchName, branchCity, IFSCCode, branchPhone }) => {
         try {
             const res = await fetch("http://localhost:3000/banking/addBranch", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({branchName, branchCity, IFSCCode, branchPhone})
+                body: JSON.stringify({ branchName, branchCity, IFSCCode, branchPhone })
             });
             const branchdata = await res.json();
             return branchdata;
@@ -56,7 +56,28 @@ export const branchadding = createAsyncThunk(
             return console.log(error.message || "Something went wrong");
         }
     }
-)
+);
+
+export const useradding = createAsyncThunk("adding/user", async ({name,email,aadharNumber,phone,password}) => {
+    try {
+        const res = await fetch("http://localhost:3000/banking/addUser", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name : name,    
+                email :email,
+                aadharNumber:aadharNumber,
+                phone:phone,
+                password:password
+            })
+        })
+    } catch (error) {
+        return console.log(error.message || "Something went wrong");
+    }
+})
+
 const initialState = {
     data: [],
     loading: false,
@@ -127,5 +148,37 @@ export const addbrachSlice = createSlice({
             });
     }
 })
+
+const user_initiionstate = {
+    user_data: [],
+    loading: false,
+    error: null,
+    loginMessage: "",
+}
+export const user_adding_slice = createSlice({
+    name:"adduser",
+    initialState:user_initiionstate,
+    reducers:{},
+    extraReducers:(builder)=>{
+        builder
+            .addCase(branchadding.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(branchadding.fulfilled, (state, action) => {
+                state.loading = false;
+                state.user_data  = action.payload;
+                state.error = null;
+                state.loginMessage = action.payload?.message || "Adding successful";
+            })
+            .addCase(branchadding.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload || action.error.message;
+                state.loginMessage = "";
+            });
+    }
+})
+
 export const addCounterSlice = CounterSlice.reducer;
 export const addbranch = addbrachSlice.reducer;
+export const add_user = user_adding_slice.reducer;

@@ -49,22 +49,37 @@ export const gettransaction = createAsyncThunk("getdata/transaction", async () =
     }
 });
 
-export const getbranchdata = createAsyncThunk("getdata/brench",async () => {
-        try {
-            const res = await fetch("http://localhost:3000/banking/getbranch", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-            });
-            const getbranch = await res.json();
-            console.log(getbranch)
-            return getbranch.result
-        } catch (error) {
-            return rejectWithValue(error.message);
-        }
+export const getbranchdata = createAsyncThunk("getdata/brench", async () => {
+    try {
+        const res = await fetch("http://localhost:3000/banking/getbranch", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        });
+        const getbranch = await res.json();
+        console.log(getbranch)
+        return getbranch.result
+    } catch (error) {
+        return rejectWithValue(error.message);
     }
+}
 )
+
+export const get_user_data = createAsyncThunk("getdata/user", async () => {
+    try {
+        const res = await fetch("http://localhost:3000/banking/getusers", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        });
+        const get_user = await res.json();
+        return get_user.result
+    } catch (error) {
+        return rejectWithValue(error.message);
+    }
+})
 
 const userInitialState = {
     userdata: [] || 0,
@@ -165,8 +180,8 @@ const getbrancint = {
 }
 export const getbrachdataSlice = createSlice({
     name: "Branch",
-    initialState : getbrancint,
-    reducers:{},
+    initialState: getbrancint,
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(getbranchdata.pending, (state) => {
@@ -185,8 +200,40 @@ export const getbrachdataSlice = createSlice({
                 state.error = "Something went wrong";
             });
     }
+});
+
+const user_intialState = {
+    user_data: [],
+    loading: false,
+    error: null,
+    loginmessage: ""
+};
+
+export const get_user_slice = createSlice({
+    name: "User",
+    initialState: user_intialState,
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(get_user_data.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+                state.loginmessage = "Loading..."
+            })
+            .addCase(get_user_data.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = null;
+                state.user_data = action.payload;
+                state.loginmessage = "Fetch successfuly !";
+            })
+            .addCase(get_user_data.rejected, (state, action) => {
+                state.loading = false;
+                state.error = "Something went wrong";
+            });
+    }
 })
 export const getuserdataslice = userSlice.reducer;
 export const getaccountdataslice = accountSlice.reducer;
 export const gettransactionslice = transactionSlice.reducer;
 export const getbranchslice = getbrachdataSlice.reducer;
+export const get_userSlice = get_user_slice.reducer;
