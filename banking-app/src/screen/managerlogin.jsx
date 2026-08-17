@@ -1,14 +1,14 @@
  import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginAdmin } from "../features/enterdata.js";
+import { loginManager } from "../features/enterdata.js";
 
-const Admin = () => {
+const ManagerLogin = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { loading, error, loginMessage, isAuthenticated } = useSelector((state) => state.counter);
     const [formData, setFormData] = useState({ email: "", password: "" });
 
+    const {manager_login_data,loading,error,loginMessage,isAuthenticated,user} = useSelector((state)=>state.manager_Login)
     // useEffect(() => {
     //     if (isAuthenticated) {
     //         navigate("/dashboard");
@@ -22,8 +22,8 @@ const Admin = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(loginAdmin(formData));
-        navigate("/Admin/dashboard")
+        dispatch(loginManager(formData));
+        navigate("/dashboard")
     };
 
     return (
@@ -44,7 +44,7 @@ const Admin = () => {
                 padding: '32px',
             }}>
                 <h1 style={{ margin: '0 0 18px', fontSize: '28px', color: '#1f2a44' }}>
-                    Admin Login
+                    Manager Login
                 </h1>
 
                 {loading && <p style={{ color: '#1a76d2' }}>Logging in…</p>}
@@ -63,7 +63,7 @@ const Admin = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        placeholder="admin@example.com"
+                        placeholder="Manager@example.com"
                         style={{
                             width: '100%',
                             padding: '12px 14px',
@@ -114,4 +114,4 @@ const Admin = () => {
     );
 };
 
-export default Admin;
+export default ManagerLogin;

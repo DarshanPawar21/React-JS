@@ -38,7 +38,7 @@ function Dashboarddetails() {
 
         <div className="simple-dashboard__card">
           <h3>Transactions</h3>
-          <p key={transactiondata.id}>{accountdata.length}</p>
+          <p key={transactiondata.id}>{transactiondata.length}</p>
         </div>
         <div className="simple-dashboard__card">
           <h3>Total Branch</h3>

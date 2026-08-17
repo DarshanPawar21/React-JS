@@ -1,0 +1,72 @@
+.simple-dashboard {
+  padding: 24px;
+  background: #f8fafc;
+  min-height: calc(100vh - var(--cbs-navbar-height, 0px));
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  flex: 1;
+}
+
+.simple-dashboard__header {
+  margin-bottom: 24px;
+}
+
+.simple-dashboard__header h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #0f1729;
+}
+
+.simple-dashboard__header p {
+  margin: 6px 0 0;
+  color: #64748b;
+}
+
+/* Cards Grid Layout */
+.role-selection__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* Interactive Card Styling */
+.role-selection__card {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.role-selection__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+  border-color: #2563eb;
+}
+
+.role-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.role-selection__card h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  color: #0f1729;
+}
+
+.role-selection__card p {
+  margin: 0;
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* Responsive Breakpoint */
+@media (max-width: 768px) {
+  .role-selection__cards {
+    grid-template-columns: 1fr;
+  }
+}

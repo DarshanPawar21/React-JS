@@ -81,6 +81,21 @@ export const get_user_data = createAsyncThunk("getdata/user", async () => {
     }
 })
 
+export const get_manager_data = createAsyncThunk("getdata/manager", async () => {
+    try {
+        const res = await fetch("http://localhost:3000/banking/getmanager", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        });
+        const get_manager = await res.json();
+        return get_manager.result
+    } catch (error) {
+        return rejectWithValue(error.message);
+    }
+})
+
 const userInitialState = {
     userdata: [] || 0,
     loading: false,
@@ -231,9 +246,41 @@ export const get_user_slice = createSlice({
                 state.error = "Something went wrong";
             });
     }
+});
+
+const manager_initialState = {
+    Manager_data: [],
+    loading: false,
+    error: null,
+    loginmessage: ""
+}
+export const get_manager_slice = createSlice({
+    name: "manager",
+    initialState: manager_initialState,
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(get_manager_data.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+                state.loginmessage = "Loading..."
+            })
+            .addCase(get_manager_data.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = null;
+                state.Manager_data = action.payload;
+                state.loginmessage = "Fetch successfuly !";
+            })
+            .addCase(get_manager_data.rejected, (state, action) => {
+                state.loading = false;
+                state.error = "Something went wrong";
+            });
+    }
+
 })
 export const getuserdataslice = userSlice.reducer;
 export const getaccountdataslice = accountSlice.reducer;
 export const gettransactionslice = transactionSlice.reducer;
 export const getbranchslice = getbrachdataSlice.reducer;
 export const get_userSlice = get_user_slice.reducer;
+export const get_manager = get_manager_slice.reducer;

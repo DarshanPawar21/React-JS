@@ -9,6 +9,7 @@ function Sidebar() {
     { to: "/dashboard/customers", label: "Customers" },
     { to: "/dashboard/accounts", label: "Accounts" },
     { to: "/dashboard/transactions", label: "Transactions" },
+    { to: "/dashboard/manager", label: "Manager" },
   ];
 
   return (
