@@ -47,7 +47,7 @@ export const search_getaccount_data = createAsyncThunk("search/Account", async (
         });
         const data = await res.json();
         console.log(data)
-        return data
+        return data.result
     } catch (err) {
         return console.log(err?.message || "Something went wrong");
     }
@@ -161,7 +161,7 @@ export const searAccount_Slice = createSlice({
             .addCase(search_getaccount_data.fulfilled, (state, action) => {
                 state.loading = false;
                 state.isAuthenticated = true;
-                state.search_Account_data = action.payload.result;
+                state.search_Account_data = action.payload;
                 state.error = null;
                 state.loginMessage = action.payload?.message || "Adding successful";
             })

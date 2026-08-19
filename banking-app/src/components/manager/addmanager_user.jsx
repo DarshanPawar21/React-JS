@@ -1,39 +1,54 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import "../css/branchs.css";
+import "../../css/branchs.css";
 import { useDispatch, useSelector } from "react-redux";
-import { Manager_Adding } from "../features/enterdata";
-function AddManager() {
+import { useradding } from "../../features/enterdata";
+import { get_manager_data, get_user_data, getaccountdata } from "../../features/getdata";
+
+function AddUser_Manager() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { ManagerAdding_data, loading, error, loginMessage } = useSelector((state) => state.manager_adding)
+    const { data, loading, error, loginMessage } = useSelector((state) => state.adding_user)
+
+    const { Manager_data } = useSelector((state) => state.getmanager || {});
+    const Mr_Manager = JSON.parse(localStorage.getItem("manager_login") || "{}");
+
+    const { User_data } = useSelector((state) => state.get_user_manager || {});
+    const real_manager = Manager_data.find((m) => m?.email === Mr_Manager?.email);
+    const Mr_IFSCCOde = real_manager?.IFSCCode || Mr_Manager?.IFSCCode;
+
+    console.log(Mr_IFSCCOde)
 
     const [user, setUser] = useState({
         name: "",
         email: "",
-        IFSCCode: "",
         aadharNumber: "",
         phone: "",
         password: "",
+        IFSCCode: Mr_IFSCCOde,
     });
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setUser({ ...user, [name]: value });
     };
 
+    useEffect(()=>{
+        dispatch(get_manager_data());
+    },[dispatch])
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(Manager_Adding(user));
         console.log("Submitted User Data:", user);
-        navigate("/dashboard/manager");
+        dispatch(useradding(user));
+        navigate("/manager/dashboard/customers");
     };
-    console.log(ManagerAdding_data);
+
     return (
         <div className="cbs-branch-form">
             <div className="cbs-branch-form__header">
-                <h2 className="cbs-branch-form__title">Add New Manager</h2>
+                <h2 className="cbs-branch-form__title">Add New User</h2>
                 <p className="cbs-branch-form__subtitle">
                     Enter details below to register a new user into the system.
                 </p>
@@ -53,17 +68,6 @@ function AddManager() {
                                 onChange={handleChange}
                             />
                         </div>
-                        <div className="cbs-field">
-                            <label>IFSC Code</label>
-                            <input
-                                type="text"
-                                className="cbs-field__input"
-                                placeholder="e.g. Rahul Sharma"
-                                name="IFSCCode"
-                                value={user.IFSCCode}
-                                onChange={handleChange}
-                            />
-                        </div>
 
                         <div className="cbs-field">
                             <label>Email Address</label>
@@ -76,6 +80,17 @@ function AddManager() {
                                 onChange={handleChange}
                             />
                         </div>
+                        {/* <div className="cbs-field">
+                            <label>IFSC Code</label>
+                            <input
+                                type="text"
+                                className="cbs-field__input"
+                                placeholder="12-digit Aadhaar Number"
+                                name="IFSCCode"
+                                value={user.IFSCCode}
+                                onChange={handleChange}
+                            />
+                        </div> */}
                         <div className="cbs-field">
                             <label>Aadhaar Number</label>
                             <input
@@ -112,7 +127,7 @@ function AddManager() {
                     </div>
 
                     <div className="cbs-branch-form__actions">
-                        <Link to="/admin/dashboard/manager" className="cbs-btn cbs-btn--secondary">
+                        <Link to="/admin/dashboard/customers" className="cbs-btn cbs-btn--secondary">
                             Cancel
                         </Link>
                         <button type="submit" className="cbs-btn cbs-btn--warning">
@@ -126,7 +141,7 @@ function AddManager() {
                             >
                                 <path d="M20 6 9 17l-5-5" />
                             </svg>
-                            Save Manager
+                            Save User
                         </button>
                     </div>
                 </form>
@@ -135,4 +150,4 @@ function AddManager() {
     );
 }
 
-export default AddManager;
+export default AddUser_Manager;

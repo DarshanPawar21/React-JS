@@ -19,11 +19,12 @@ const ManagerLogin = () => {
         const { name, value } = e.target;
         setFormData((e) => ({ ...e, [name]: value }));
     };
-
+    console.log(manager_login_data);
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(loginManager(formData));
-        navigate("/dashboard")
+        localStorage.setItem("manager_login",JSON.stringify(formData));
+        navigate("/manager/dashboard")
     };
 
     return (

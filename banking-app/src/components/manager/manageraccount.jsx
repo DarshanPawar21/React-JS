@@ -1,24 +1,39 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../css/sercgbranch.css";
+import "../../css/sercgbranch.css";
 import { useSelector, useDispatch } from "react-redux";
-import { get_user_data } from "../features/getdata";
-import { search_getaccount_data } from "../features/searchslice";
-import { getaccountdata } from "../features/getdata";
-function SearchAccount() {
+import { get_manager_data, get_user_data } from "../../features/getdata";
+import { search_getaccount_data } from "../../features/searchslice";
+// import { getaccountdata } from "../../features/getdata";
+import { get_userdata_manager, get_accountdata_manager, get_transactiondata_manager } from "../../features/manager_data/getdata_manager";
+// import { search_getaccount_data } from "../../features/searchslice";
+
+function Search_Manager_Account() {
     const usedispatch = useDispatch();
     const [search, setSearch] = useState("");
     const [click, setclick] = useState(false);
 
-    const { accountdata, loading, error, loginmessage } = useSelector((state) => state.getaccount)
-    const {search_Account_data} = useSelector((state)=>state.search_Account)
-    useEffect(() => {
-        usedispatch(search_getaccount_data(search));
-    }, []);
 
+    const { Manager_data } = useSelector((state) => state.getmanager || {});
+    const Mr_Manager = JSON.parse(localStorage.getItem("manager_login") || "{}");
+
+    const real_manager = Manager_data.find((m) => m?.email === Mr_Manager?.email);
+    const Mr_IFSCCOde = real_manager?.IFSCCode || Mr_Manager?.IFSCCode;
+
+    const { Account_data, loading, error, loginmessage } = useSelector((state) => state.get_account_manager)
+    const { search_Account_data } = useSelector((state) => state.search_Account)
+
+
+    useEffect(() => {
+        // usedispatch(getaccountdata());
+        usedispatch(get_manager_data(Mr_IFSCCOde));
+        usedispatch(get_accountdata_manager(Mr_IFSCCOde));
+    }, [usedispatch,Mr_IFSCCOde]);
+
+    // console.log(re);
     const handlesubmit = (e) => {
         e.preventDefault();
-        search_getaccount_data(search);
+        usedispatch(search_getaccount_data(search));
         setclick(true);
         console.log("Search user:", search);
     };
@@ -33,7 +48,7 @@ function SearchAccount() {
                     </p>
                 </div>
 
-                <Link to="/admin/dashboard/accounts/add" className="cbs-btn cbs-btn--primary">
+                <Link to="/manager/dashboard/accounts/add" className="cbs-btn cbs-btn--primary">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <line x1="12" y1="5" x2="12" y2="19" />
                         <line x1="5" y1="12" x2="19" y2="12" />
@@ -73,8 +88,8 @@ function SearchAccount() {
                             </tr>
                         </thead>
                         <tbody>
-                            {click ?
-                            (accountdata && accountdata.map((data) => (
+                            {!click ?
+                                (Account_data && Account_data.map((data) => (
                                     <tr key={data._id}>
                                         <td className="cbs-table__muted">{data._id}</td>
                                         <td>{data.accountNumber}</td>
@@ -83,7 +98,7 @@ function SearchAccount() {
                                         <td>{data.aadharNumber}</td>
                                         <td>{data.balance}</td>
                                     </tr>
-                                ))):
+                                ))) :
                                 (search_Account_data && search_Account_data.map((data) => (
                                     <tr key={data._id}>
                                         <td className="cbs-table__muted">{data._id}__</td>
@@ -103,4 +118,4 @@ function SearchAccount() {
     );
 }
 
-export default SearchAccount;
+export default Search_Manager_Account;

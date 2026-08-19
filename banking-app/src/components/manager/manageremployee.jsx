@@ -1,40 +1,54 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../css/sercgbranch.css";
+import "../../css/sercgbranch.css";
 import { useSelector, useDispatch } from "react-redux";
-import { get_manager_data } from "../features/getdata";
-function Searchmanager() {
+import { get_manager_data, get_user_data, getaccountdata } from "../../features/getdata";
+import { get_userdata_manager, get_accountdata_manager, get_transactiondata_manager, get_employee_manager } from "../../features/manager_data/getdata_manager";
+function Search_Manager_Employee() {
     const usedispatch = useDispatch();
     const [search, setSearch] = useState("");
     const [click, setclick] = useState(false);
 
-    const { Manager_data, loading, error, loginmessage } = useSelector((state) => state.getmanager)
+
+    const { Manager_data } = useSelector((state) => state.getmanager || {});
+    const Mr_Manager = JSON.parse(localStorage.getItem("manager_login") || "{}");
+
+
+    const real_manager = Manager_data.find((m) => m?.email === Mr_Manager?.email);
+    const Mr_IFSCCOde = real_manager?.IFSCCode || Mr_Manager?.IFSCCode;
+
+
+    const { search_Userdata, loading, error, loginmessage } = useSelector((state) => state.search_User);
+    const { Employee_data } = useSelector((state) => state.get_employee_manager);
+
 
     useEffect(() => {
-        usedispatch(get_manager_data());
-    }, [usedispatch]);
+        usedispatch(get_manager_data(Mr_IFSCCOde));
+        usedispatch(get_employee_manager(Mr_IFSCCOde));
+    }, [usedispatch, Mr_IFSCCOde]);
 
     const handlesubmit = (e) => {
         e.preventDefault();
+        setclick(true);
         console.log("Search user:", search);
     };
-    // console.log(Manager_data);
+    console.log(Employee_data);
     return (
         <div className="cbs-branches">
             <div className="cbs-branches__header">
                 <div>
-                    <h2 className="cbs-branches__title">All Customers</h2>
+                    <h2 className="cbs-branches__title">All Employee</h2>
                     <p className="cbs-branches__subtitle">
-                        Every customer registered in the network
+                        Every employee registered in the network
                     </p>
                 </div>
 
-                <Link to="/admin/dashboard/manager/add" className="cbs-btn cbs-btn--primary">
+                <Link to="/manager/dashboard/Employees/add" className="cbs-btn cbs-btn--primary">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <line x1="12" y1="5" x2="12" y2="19" />
                         <line x1="5" y1="12" x2="19" y2="12" />
                     </svg>
-                    Add User
+                    Add Employee
                 </Link>
             </div>
 
@@ -63,19 +77,19 @@ function Searchmanager() {
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>aadhar Number</th>
                                 <th>Phone</th>
+                                <th>Aadhar Number</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                Manager_data.map((data) => (
-                                    <tr key={data._id}>
+                                Employee_data && Employee_data.map((data, index) => (
+                                    <tr key={data.id || index}>
                                         <td className="cbs-table__muted">{data._id}</td>
-                                        <td>{data.name}</td>
-                                        <td>{data.email}</td>
-                                        <td className="cbs-table__mono">{data.aadharNumber}</td>
-                                        <td>{data.phone}</td>
+                                        <td>{data.Employee_name}</td>
+                                        <td>{data.Employee_email}</td>
+                                        <td className="cbs-table__mono">{data.Employee_phone}</td>
+                                        <td>{data.Employee_aadharNumber}</td>
                                     </tr>
                                 ))
                             }
@@ -87,4 +101,4 @@ function Searchmanager() {
     );
 }
 
-export default Searchmanager;
+export default Search_Manager_Employee;

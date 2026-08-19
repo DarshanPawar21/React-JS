@@ -4,6 +4,7 @@ import Dashboard from "./screen/dashboard.jsx";
 import Home from "./screen/home.jsx";
 import ManagerLogin from "./screen/managerlogin.jsx";
 import AdminDashboard from "./screen/dashboard.jsx";
+import Managerdashboard from "./screen/managerdashboard.jsx";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/admin" element={<Admin />} />
         <Route path="/manager" element={<ManagerLogin />} />
         <Route path="Admin/dashboard/*" element={<AdminDashboard />} />
+        <Route path="/manager/dashboard/*" element={<Managerdashboard />} />
       </Routes>
     </BrowserRouter>
   );

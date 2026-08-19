@@ -77,7 +77,7 @@ export const branchadding = createAsyncThunk(
     }
 );
 
-export const useradding = createAsyncThunk("adding/user", async ({ name, email, aadharNumber, phone, password }) => {
+export const useradding = createAsyncThunk("adding/user", async ({ name, email, aadharNumber, phone, password, IFSCCode }) => {
     try {
         const res = await fetch("http://localhost:3000/banking/addUser", {
             method: "POST",
@@ -86,12 +86,15 @@ export const useradding = createAsyncThunk("adding/user", async ({ name, email, 
             },
             body: JSON.stringify({
                 name: name,
+                IFSCCode:IFSCCode,
                 email: email,
                 aadharNumber: aadharNumber,
                 phone: phone,
                 password: password
             })
         })
+        const user_data = await res.json();
+        return user_data
     } catch (error) {
         return console.log(error.message || "Something went wrong");
     }
@@ -127,11 +130,11 @@ export const Manager_Adding = createAsyncThunk("adding/manager", async ({ name, 
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                 name,
-                 email,
-                 aadharNumber,
-                 phone,
-                 password,
+                name,
+                email,
+                aadharNumber,
+                phone,
+                password,
                 IFSCCode,
             })
         });
@@ -306,7 +309,7 @@ export const manager_addingdata_slice = createSlice({
     }
 })
 
-const login_manager_int ={
+const login_manager_int = {
     manager_login_data: [],
     loading: false,
     error: null,
@@ -316,11 +319,11 @@ const login_manager_int ={
 }
 
 export const manager_login_slice = createSlice({
-    name:"loginManger",
-    initialState:login_manager_int,
-    reducers:{},
-    extraReducers:(builder)=>{
-         builder
+    name: "loginManger",
+    initialState: login_manager_int,
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
             .addCase(loginManager.pending, (state) => {
                 state.loading = true;
                 state.error = null;
@@ -343,9 +346,65 @@ export const manager_login_slice = createSlice({
     }
 })
 
+
+
+export const Employee_adding = createAsyncThunk("adding/employee", async ({ 
+    Employee_name, Employee_email, Employee_aadharNumber, Employee_phone, Employee_password, IFSCCode }) => {
+    try {
+        const res = await fetch("http://localhost:3000/banking/addemployee", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                Employee_name,
+                IFSCCode:IFSCCode,
+                Employee_email,
+                Employee_aadharNumber,
+                Employee_phone,
+                Employee_password
+            })
+        })
+        const user_data = await res.json();
+        return user_data
+    } catch (error) {
+        return console.log(error.message || "Something went wrong");
+    }
+})
+
+const Employee_initiionstate = {
+    employee_data: [],
+    loading: false,
+    error: null,
+    loginMessage: "",
+}
+export const Employee_adding_slice = createSlice({
+    name: "adduser",
+    initialState: Employee_initiionstate,
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(Employee_adding.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(Employee_adding.fulfilled, (state, action) => {
+                state.loading = false;
+                state.employee_data = action.payload;
+                state.error = null;
+                state.loginMessage = action.payload?.message || "Adding successful";
+            })
+            .addCase(Employee_adding.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload || action.error.message;
+                state.loginMessage = "";
+            });
+    }
+})
 export const addCounterSlice = CounterSlice.reducer;
 export const addbranch = addbrachSlice.reducer;
 export const add_user = user_adding_slice.reducer;
 export const account_slice = account_adding_slice.reducer;
 export const manager_slice = manager_addingdata_slice.reducer;
 export const manager_login = manager_login_slice.reducer;
+export const employee_adding = Employee_adding_slice.reducer;

@@ -1,15 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "../css/side.css";
+import "../../css/side.css";
 
-function Sidebar() {
+function Managersidebar() {
   const navItems = [
-    { to: "/admin/dashboard", label: "Dashboard" },
-    { to: "/admin/dashboard/branches", label: "Branches" },
-    { to: "/admin/dashboard/customers", label: "Customers" },
-    { to: "/admin/dashboard/accounts", label: "Accounts" },
-    { to: "/admin/dashboard/transactions", label: "Transactions" },
-    { to: "/admin/dashboard/manager", label: "Manager" },
+    { to: "/manager/dashboard", label: "Dashboard" },
+    { to: "/manager/dashboard/customers", label: "Customers" },
+    { to: "/manager/dashboard/accounts", label: "Accounts" },
+    { to: "/manager/dashboard/transactions", label: "Transactions" },
+    { to: "/manager/dashboard/Employees", label: "Employees" },
   ];
 
   return (
@@ -23,7 +22,7 @@ function Sidebar() {
           <NavLink
             key={item.to}
             to={item.to}
-            end={item.to === "/dashboard"}
+            end={item.to === "/manager/dashboard"}
             className={({ isActive }) =>
               `simple-sidebar__link ${isActive ? "simple-sidebar__link--active" : ""}`
             }
@@ -36,4 +35,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default Managersidebar;

@@ -64,7 +64,7 @@ const { Account_data, loading, error, loginMessage } = useSelector((state) => st
                         onChange={handleChange}
                     />
                     <button type="submit" className="btn btn-success">Create Account</button>
-                    <Link to="/dashboard/accounts" className="cbs-btn cbs-btn--secondary">
+                    <Link to="/admin/dashboard/accounts" className="cbs-btn cbs-btn--secondary">
                             Cancel
                         </Link>
                 </form>

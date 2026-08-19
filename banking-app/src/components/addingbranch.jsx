@@ -113,7 +113,7 @@ function Branch() {
 
                     {/* Form Actions */}
                     <div className="cbs-branch-form__actions">
-                        <Link to="/dashboard/branches" type="button" className="cbs-btn cbs-btn--secondary">
+                        <Link to="/admin/dashboard/branches" type="button" className="cbs-btn cbs-btn--secondary">
                             Cancel
                         </Link>
                         <button type="submit" className="cbs-btn cbs-btn--warning">

@@ -7,7 +7,7 @@ function AddUser() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { data,loading,error,loginMessage} = useSelector((state)=>state.adding_user)
+    const { data, loading, error, loginMessage } = useSelector((state) => state.adding_user)
 
     const [user, setUser] = useState({
         name: "",
@@ -15,6 +15,7 @@ function AddUser() {
         aadharNumber: "",
         phone: "",
         password: "",
+        IFSCCode: "",
     });
 
     const handleChange = (e) => {
@@ -65,6 +66,17 @@ function AddUser() {
                             />
                         </div>
                         <div className="cbs-field">
+                            <label>IFSC Code</label>
+                            <input
+                                type="text"
+                                className="cbs-field__input"
+                                placeholder="12-digit Aadhaar Number"
+                                name="IFSCCode"
+                                value={user.IFSCCode}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="cbs-field">
                             <label>Aadhaar Number</label>
                             <input
                                 type="text"
@@ -100,7 +112,7 @@ function AddUser() {
                     </div>
 
                     <div className="cbs-branch-form__actions">
-                        <Link to="/dashboard/customers" className="cbs-btn cbs-btn--secondary">
+                        <Link to="/admin/dashboard/customers" className="cbs-btn cbs-btn--secondary">
                             Cancel
                         </Link>
                         <button type="submit" className="cbs-btn cbs-btn--warning">

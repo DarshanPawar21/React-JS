@@ -278,9 +278,62 @@ export const get_manager_slice = createSlice({
     }
 
 })
+
+export const get_employee_data = createAsyncThunk("getdata/employee", async () => {
+    try {
+        const res = await fetch("http://localhost:3000/banking/getemployee",{
+            method:"GET",
+            headers:{
+                "Content-Type":"application/json"
+            },
+        });
+        const Employee = await res.json();
+        return Employee.result
+    } catch (err) {
+        return rejectWithValue(err.message);
+    }
+});
+
+const employee_int ={
+    Employee_data: [],
+    loading: false,
+    error: null,
+    loginmessage: ""
+};
+
+export const get_employee_slice = createSlice({
+    name:"Employee",
+    initialState:employee_int,
+    reducers:{},
+    extraReducers:(builder)=>{
+        builder
+            .addCase(get_employee_data.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+                state.loginmessage = "Loading..."
+            })
+            .addCase(get_employee_data.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = null;
+                state.Employee_data = action.payload;
+                state.loginmessage = "Fetch successfuly !";
+            })
+            .addCase(get_employee_data.rejected, (state, action) => {
+                state.loading = false;
+                state.error = "Something went wrong";
+            });
+    }
+})
+
+
+
+
+
+
 export const getuserdataslice = userSlice.reducer;
 export const getaccountdataslice = accountSlice.reducer;
 export const gettransactionslice = transactionSlice.reducer;
 export const getbranchslice = getbrachdataSlice.reducer;
 export const get_userSlice = get_user_slice.reducer;
 export const get_manager = get_manager_slice.reducer;
+export const get_employee = get_employee_slice.reducer;

@@ -1,25 +1,37 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../css/sercgbranch.css";
+import "../../css/sercgbranch.css";
 import { useSelector, useDispatch } from "react-redux";
-import { get_user_data } from "../features/getdata";
-import { search_getUser_data } from "../features/searchslice";
+import { get_manager_data, get_user_data, getaccountdata } from "../../features/getdata";
+import { get_userdata_manager, get_accountdata_manager, get_transactiondata_manager } from "../../features/manager_data/getdata_manager";
+import { search_getUser_data } from "../../features/searchslice";
 
-function SearchUser() {
+function Search_Manager_User() {
     const usedispatch = useDispatch();
     const [search, setSearch] = useState("");
     const [click, setclick] = useState(false);
 
-    const { user_data } = useSelector((state) => state.geting_user);
+
+    const { Manager_data } = useSelector((state) => state.getmanager || {});
+    const Mr_Manager = JSON.parse(localStorage.getItem("manager_login") || "{}");
+
+    const { User_data } = useSelector((state) => state.get_user_manager || {});
+    const real_manager = Manager_data.find((m) => m?.email === Mr_Manager?.email);
+    const Mr_IFSCCOde = real_manager?.IFSCCode || Mr_Manager?.IFSCCode;
+
+
     const { search_Userdata, loading, error, loginmessage } = useSelector((state) => state.search_User);
-    console.log(search_Userdata);
+
+    // console.log(User_data)
+
     useEffect(() => {
-        usedispatch(get_user_data());
-    }, [usedispatch]);
+        usedispatch(get_manager_data(Mr_IFSCCOde));
+        usedispatch(get_userdata_manager(Mr_IFSCCOde));
+
+    }, [usedispatch, Mr_IFSCCOde]);
 
     const handlesubmit = (e) => {
         e.preventDefault();
-        usedispatch(get_user_data());
         usedispatch(search_getUser_data(search));
         setclick(true);
         console.log("Search user:", search);
@@ -35,7 +47,7 @@ function SearchUser() {
                     </p>
                 </div>
 
-                <Link to="/admin/dashboard/customers/add" className="cbs-btn cbs-btn--primary">
+                <Link to="/manager/dashboard/customers/add" className="cbs-btn cbs-btn--primary">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <line x1="12" y1="5" x2="12" y2="19" />
                         <line x1="5" y1="12" x2="19" y2="12" />
@@ -58,7 +70,7 @@ function SearchUser() {
                     />
                     <button className="btn btn-primary" onClick={(e) => handlesubmit(e)}>Search</button>
                 </div>
-                <span className="cbs-branches__count">{user_data?.length || 0} customer</span>
+                {/* <span className="cbs-branches__count">{user_data?.length || 0} customer</span> */}
             </div>
 
             <div className="cbs-card cbs-card--table">
@@ -75,7 +87,6 @@ function SearchUser() {
                         </thead>
                         <tbody>
                             {click ? (
-                                // --- CLICK = TRUE (Search Result Data) ---
                                 search_Userdata && search_Userdata.length > 0 ? (
                                     search_Userdata.map((data) => (
                                         <tr key={data._id || data.id}>
@@ -92,9 +103,8 @@ function SearchUser() {
                                     </tr>
                                 )
                             ) : (
-                                // --- CLICK = FALSE (Pehle Wala / Default Data) ---
-                                 user_data&& user_data.length > 0 ? (
-                                    user_data.map((data) => (
+                                 User_data&& User_data.length > 0 ? (
+                                    User_data.map((data) => (
                                         <tr key={data._id || data.id}>
                                             <td className="cbs-table__muted">{data._id || data.id}</td>
                                             <td>{data.name}</td>
@@ -117,4 +127,4 @@ function SearchUser() {
     );
 }
 
-export default SearchUser;
+export default Search_Manager_User;
