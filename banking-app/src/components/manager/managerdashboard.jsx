@@ -3,6 +3,7 @@ import "../../css/dashboard.css";
 import { get_userdata_manager,get_accountdata_manager,get_transactiondata_manager, get_employee_manager } from "../../features/manager_data/getdata_manager";
 import { get_manager_data, getaccountdata} from "../../features/getdata";
 import { useSelector, useDispatch } from "react-redux";
+import ManagerDashboardChart from "../chart/managerdashboardChart";
 // import { get_accountdata_manager } from "../../features/manager_data/getdata_manager";
 function Manager_Dashboarddetails() {
   const dispatch = useDispatch();
@@ -64,6 +65,7 @@ function Manager_Dashboarddetails() {
           <p key={Employee_data.id}>{Employee_data.length}</p>
         </div>
       </div>
+      <ManagerDashboardChart />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+﻿import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 const base = "mongodb://darshan-dev:ZIDAynLTg9H5qa5K@ac-mhn9quu-shard-00-00.8ja7u8v.mongodb.net:27017,ac-mhn9quu-shard-00-01.8ja7u8v.mongodb.net:27017,ac-mhn9quu-shard-00-02.8ja7u8v.mongodb.net:27017/Banking?ssl=true&replicaSet=atlas-js5qif-shard-0&authSource=admin&appName=Cluster0"
 // export const loginAdmin = createAsyncThunk(
 //     "counter/loginAdmin",
@@ -121,6 +121,35 @@ export const Account_Adding = createAsyncThunk("addind/account", async ({ IFSCCo
         return console.log(error.message || "Something went wrong");
     }
 })
+
+export const Employee_Transaction_Adding = createAsyncThunk(
+    "adding/employeeTransaction",
+    async ({ accountNumber, transactionType, tranamount, IFSCCode }, { rejectWithValue }) => {
+        try {
+            const res = await fetch("http://localhost:3000/banking/transacation", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    accountNumber,
+                    transactionType,
+                    tranamount,
+                    IFSCCode
+                })
+            });
+            const data = await res.json();
+
+            if (!res.ok) {
+                return rejectWithValue(data.message || "Transaction failed!");
+            }
+
+            return data;
+        } catch (error) {
+            return rejectWithValue(error.message || "Something went wrong");
+        }
+    }
+)
 
 export const Manager_Adding = createAsyncThunk("adding/manager", async ({ name, email, aadharNumber, phone, password, IFSCCode }) => {
     try {
@@ -278,6 +307,38 @@ export const account_adding_slice = createSlice({
     }
 })
 
+const transaction_initialState = {
+    transaction_data: null,
+    loading: false,
+    error: null,
+    loginMessage: "",
+}
+
+export const employee_transaction_slice = createSlice({
+    name: "employeeTransaction",
+    initialState: transaction_initialState,
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(Employee_Transaction_Adding.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+                state.loginMessage = "";
+            })
+            .addCase(Employee_Transaction_Adding.fulfilled, (state, action) => {
+                state.loading = false;
+                state.transaction_data = action.payload?.transaction || action.payload;
+                state.error = null;
+                state.loginMessage = action.payload?.message || "Transaction successful!";
+            })
+            .addCase(Employee_Transaction_Adding.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload || action.error.message;
+                state.loginMessage = "";
+            });
+    }
+})
+
 const manager_initialState = {
     ManagerAadding_data: [],
     loading: false,
@@ -401,6 +462,65 @@ export const Employee_adding_slice = createSlice({
             });
     }
 })
+
+
+
+export const loginEmployee = createAsyncThunk(
+    "counter/loginEmployee",
+    async ({ Employee_email, Employee_password }) => {
+        try {
+            const res = await fetch("http://localhost:3000/banking/loginemployee", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ Employee_email, Employee_password }),
+            });
+            const data = await res.json();
+            return data;
+        } catch (error) {
+            return console.log(error.message || "Something went wrong");
+        }
+    }
+);
+
+const login_employee_int = {
+    employee_login_data: [],
+    loading: false,
+    error: null,
+    loginMessage: "",
+    isAuthenticated: false,
+    user: null,
+}
+
+export const employee_login_slice = createSlice({
+    name: "loginEmployee",
+    initialState: login_employee_int,
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(loginEmployee.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+                state.loginMessage = "";
+                state.isAuthenticated = false;
+            })
+            .addCase(loginEmployee.fulfilled, (state, action) => {
+                state.loading = false;
+                state.isAuthenticated = true;
+                state.employee_login_data = action.payload?.result ?? action.payload?.user ?? action.payload;
+                state.error = null;
+                state.loginMessage = action.payload?.message || "Login successful";
+            })
+            .addCase(loginEmployee.rejected, (state, action) => {
+                state.loading = false;
+                state.isAuthenticated = false;
+                state.error = action.payload || action.error.message;
+                state.loginMessage = "";
+            });
+    }
+})
+
 export const addCounterSlice = CounterSlice.reducer;
 export const addbranch = addbrachSlice.reducer;
 export const add_user = user_adding_slice.reducer;
@@ -408,3 +528,7 @@ export const account_slice = account_adding_slice.reducer;
 export const manager_slice = manager_addingdata_slice.reducer;
 export const manager_login = manager_login_slice.reducer;
 export const employee_adding = Employee_adding_slice.reducer;
+export const employee_login = employee_login_slice.reducer;
+export const employee_transaction = employee_transaction_slice.reducer;
+
+

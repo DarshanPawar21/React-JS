@@ -3,16 +3,18 @@ import { Link } from "react-router-dom";
 import "../css/sercgbranch.css";
 import { useSelector, useDispatch } from "react-redux";
 import { get_manager_data } from "../features/getdata";
+import PaginationControls from "./PaginationControls";
 function Searchmanager() {
     const usedispatch = useDispatch();
     const [search, setSearch] = useState("");
     const [click, setclick] = useState(false);
+    const [page, setPage] = useState(1);
 
-    const { Manager_data, loading, error, loginmessage } = useSelector((state) => state.getmanager)
+    const { Manager_data, pagination, loading, error, loginmessage } = useSelector((state) => state.getmanager)
 
     useEffect(() => {
-        usedispatch(get_manager_data());
-    }, [usedispatch]);
+        usedispatch(get_manager_data({ page, limit: 10 }));
+    }, [usedispatch, page]);
 
     const handlesubmit = (e) => {
         e.preventDefault();
@@ -82,6 +84,11 @@ function Searchmanager() {
                         </tbody>
                     </table>
                 </div>
+                <PaginationControls
+                    pagination={pagination}
+                    page={page}
+                    onPageChange={setPage}
+                />
             </div>
         </div>
     );

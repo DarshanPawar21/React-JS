@@ -5,23 +5,32 @@ import { useSelector, useDispatch } from "react-redux";
 import { get_user_data } from "../features/getdata";
 import { search_getaccount_data } from "../features/searchslice";
 import { getaccountdata } from "../features/getdata";
+import PaginationControls from "./PaginationControls";
 function SearchAccount() {
     const usedispatch = useDispatch();
     const [search, setSearch] = useState("");
     const [click, setclick] = useState(false);
+    const [activeSearch, setActiveSearch] = useState("");
+    const [page, setPage] = useState(1);
 
-    const { accountdata, loading, error, loginmessage } = useSelector((state) => state.getaccount)
-    const {search_Account_data} = useSelector((state)=>state.search_Account)
+    const { accountdata, pagination, loading, error, loginmessage } = useSelector((state) => state.getaccount)
+    const { search_Account_data, pagination: searchPagination } = useSelector((state)=>state.search_Account)
     useEffect(() => {
-        usedispatch(search_getaccount_data(search));
-    }, []);
+        if (click) {
+            usedispatch(search_getaccount_data({ search: activeSearch, page, limit: 10 }));
+        } else {
+            usedispatch(getaccountdata({ page, limit: 10 }));
+        }
+    }, [usedispatch, click, activeSearch, page]);
 
     const handlesubmit = (e) => {
         e.preventDefault();
-        search_getaccount_data(search);
+        setActiveSearch(search);
+        setPage(1);
         setclick(true);
         console.log("Search user:", search);
     };
+    const currentPagination = click ? searchPagination : pagination;
     console.log(search_Account_data);
     return (
         <div className="cbs-branches">
@@ -73,7 +82,7 @@ function SearchAccount() {
                             </tr>
                         </thead>
                         <tbody>
-                            {click ?
+                            {!click ?
                             (accountdata && accountdata.map((data) => (
                                     <tr key={data._id}>
                                         <td className="cbs-table__muted">{data._id}</td>
@@ -98,6 +107,11 @@ function SearchAccount() {
                         </tbody>
                     </table>
                 </div>
+                <PaginationControls
+                    pagination={currentPagination}
+                    page={page}
+                    onPageChange={setPage}
+                />
             </div>
         </div>
     );

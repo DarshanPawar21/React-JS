@@ -7,13 +7,14 @@ import { get_manager_data } from "../../features/getdata";
 import { search_gettransaction_data, serach_transaction } from "../../features/searchslice";
 import { search_Transctiondata_Slice } from "../../features/searchslice";
 import { get_transactiondata_manager } from "../../features/manager_data/getdata_manager";
+import PaginationControls from "../PaginationControls";
 function Search_Transaction_Manager() {
     const usedispatch = useDispatch();
 
     const { Manager_data } = useSelector((state) => state.getmanager || {});
     const Mr_Manager = JSON.parse(localStorage.getItem("manager_login") || "{}");
 
-    const { Transaction_data  } = useSelector((state) => state.get_transaction_manager || {});
+    const { Transaction_data, pagination } = useSelector((state) => state.get_transaction_manager || {});
 
 
     const real_manager = Manager_data.find((m) => m?.email === Mr_Manager?.email);
@@ -21,20 +22,28 @@ function Search_Transaction_Manager() {
 
     console.log(real_manager)
     // const { transactiondata, loading, error, loginmessage } = useSelector((state) => state.gettransaction);
-    const { Search_Transaction } = useSelector((state) => state.serach_Transactiondata)
+    const { Search_Transaction, pagination: searchPagination } = useSelector((state) => state.serach_Transactiondata)
     const [search, setsearch] = useState("")
     const [click, setclick] = useState(false);
+    const [activeSearch, setActiveSearch] = useState("");
+    const [page, setPage] = useState(1);
     useEffect(() => {
         usedispatch(get_manager_data(Mr_IFSCCOde));
-        usedispatch(get_transactiondata_manager(Mr_IFSCCOde));
-    }, [usedispatch,Mr_IFSCCOde]);
+        if (click) {
+            usedispatch(search_gettransaction_data({ search: activeSearch, IFSCCode: Mr_IFSCCOde, page, limit: 10 }));
+        } else {
+            usedispatch(get_transactiondata_manager({ IFSCCode: Mr_IFSCCOde, page, limit: 10 }));
+        }
+    }, [usedispatch, Mr_IFSCCOde, click, activeSearch, page]);
 
     const handlesubmit = (e) => {
         e.preventDefault();
-        usedispatch(search_gettransaction_data(search));
+        setActiveSearch(search);
+        setPage(1);
         setclick(true);
         console.log("Search user:", search);
     };
+    const currentPagination = click ? searchPagination : pagination;
     console.log(Transaction_data);
     return (
         <div className="cbs-branches">
@@ -114,6 +123,11 @@ function Search_Transaction_Manager() {
                         </tbody>
                     </table>
                 </div>
+                <PaginationControls
+                    pagination={currentPagination}
+                    page={page}
+                    onPageChange={setPage}
+                />
             </div>
         </div>
     );

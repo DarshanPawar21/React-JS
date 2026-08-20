@@ -5,37 +5,46 @@ import { useSelector, useDispatch } from "react-redux";
 import { get_manager_data, get_user_data, getaccountdata } from "../../features/getdata";
 import { get_userdata_manager, get_accountdata_manager, get_transactiondata_manager } from "../../features/manager_data/getdata_manager";
 import { search_getUser_data } from "../../features/searchslice";
+import PaginationControls from "../PaginationControls";
 
 function Search_Manager_User() {
     const usedispatch = useDispatch();
     const [search, setSearch] = useState("");
     const [click, setclick] = useState(false);
+    const [activeSearch, setActiveSearch] = useState("");
+    const [page, setPage] = useState(1);
 
 
     const { Manager_data } = useSelector((state) => state.getmanager || {});
     const Mr_Manager = JSON.parse(localStorage.getItem("manager_login") || "{}");
 
-    const { User_data } = useSelector((state) => state.get_user_manager || {});
+    const { User_data, pagination } = useSelector((state) => state.get_user_manager || {});
     const real_manager = Manager_data.find((m) => m?.email === Mr_Manager?.email);
     const Mr_IFSCCOde = real_manager?.IFSCCode || Mr_Manager?.IFSCCode;
 
 
-    const { search_Userdata, loading, error, loginmessage } = useSelector((state) => state.search_User);
+    const { search_Userdata, pagination: searchPagination, loading, error, loginmessage } = useSelector((state) => state.search_User);
 
     // console.log(User_data)
 
     useEffect(() => {
         usedispatch(get_manager_data(Mr_IFSCCOde));
-        usedispatch(get_userdata_manager(Mr_IFSCCOde));
+        if (click) {
+            usedispatch(search_getUser_data({ search: activeSearch, IFSCCode: Mr_IFSCCOde, page, limit: 10 }));
+        } else {
+            usedispatch(get_userdata_manager({ IFSCCode: Mr_IFSCCOde, page, limit: 10 }));
+        }
 
-    }, [usedispatch, Mr_IFSCCOde]);
+    }, [usedispatch, Mr_IFSCCOde, click, activeSearch, page]);
 
     const handlesubmit = (e) => {
         e.preventDefault();
-        usedispatch(search_getUser_data(search));
+        setActiveSearch(search);
+        setPage(1);
         setclick(true);
         console.log("Search user:", search);
     };
+    const currentPagination = click ? searchPagination : pagination;
     console.log(search_Userdata);
     return (
         <div className="cbs-branches">
@@ -122,6 +131,11 @@ function Search_Manager_User() {
                         </tbody>
                     </table>
                 </div>
+                <PaginationControls
+                    pagination={currentPagination}
+                    page={page}
+                    onPageChange={setPage}
+                />
             </div>
         </div>
     );

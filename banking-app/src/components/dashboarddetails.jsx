@@ -4,6 +4,7 @@ import { getaccountdata, gettransaction, getuserdata, getbranchdata } from "../f
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { get_employee_data } from "../features/getdata";
+import DashboardChart from "./chart/admindashboardChart";
 
 function Dashboarddetails() {
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ function Dashboarddetails() {
           <p key={Employee_data.id}>{Employee_data.length}</p>
         </div>
       </div>
+       <DashboardChart />
     </div>
   );
 }

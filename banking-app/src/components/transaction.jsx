@@ -4,23 +4,32 @@ import "../css/sercgbranch.css";
 import { useSelector, useDispatch } from "react-redux";
 import { gettransaction } from "../features/getdata";
 import { search_gettransaction_data, serach_transaction } from "../features/searchslice";
+import PaginationControls from "./PaginationControls";
 function SearchTransaction() {
     const usedispatch = useDispatch();
 
-    const { transactiondata, loading, error, loginmessage } = useSelector((state) => state.gettransaction);
-    const { Search_Transaction } = useSelector((state) => state.serach_Transactiondata)
+    const { transactiondata, pagination, loading, error, loginmessage } = useSelector((state) => state.gettransaction);
+    const { Search_Transaction, pagination: searchPagination } = useSelector((state) => state.serach_Transactiondata)
     const [search, setsearch] = useState("")
     const [click, setclick] = useState(false);
+    const [activeSearch, setActiveSearch] = useState("");
+    const [page, setPage] = useState(1);
     useEffect(() => {
-        usedispatch(gettransaction());
-    }, [usedispatch]);
+        if (click) {
+            usedispatch(search_gettransaction_data({ search: activeSearch, page, limit: 10 }));
+        } else {
+            usedispatch(gettransaction({ page, limit: 10 }));
+        }
+    }, [usedispatch, click, activeSearch, page]);
 
     const handlesubmit = (e) => {
         e.preventDefault();
-        usedispatch(search_gettransaction_data(search));
+        setActiveSearch(search);
+        setPage(1);
         setclick(true);
         console.log("Search user:", search);
     };
+    const currentPagination = click ? searchPagination : pagination;
     console.log(Search_Transaction);
     return (
         <div className="cbs-branches">
@@ -100,6 +109,11 @@ function SearchTransaction() {
                         </tbody>
                     </table>
                 </div>
+                <PaginationControls
+                    pagination={currentPagination}
+                    page={page}
+                    onPageChange={setPage}
+                />
             </div>
         </div>
     );

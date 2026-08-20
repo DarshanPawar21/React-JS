@@ -1,23 +1,38 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { get_employee_data } from "../getdata";
 
+const buildScopedBody = (payload) => {
+  if (payload && typeof payload === "object") {
+    return {
+      IFSCCode: payload.IFSCCode,
+      ...(payload.page ? { page: payload.page } : {}),
+      ...(payload.limit ? { limit: payload.limit } : {})
+    };
+  }
+
+  return { IFSCCode: payload };
+};
+
+const getResult = (payload) => payload?.result || payload || [];
+const getPagination = (payload) => payload?.pagination || null;
+
 export const get_userdata_manager = createAsyncThunk(
   "getdata/userdata_manager",
-  async (IFSCCode, { rejectWithValue }) => {
+  async (payload, { rejectWithValue }) => {
     try {
       const res = await fetch("http://localhost:3000/banking/manager/getuser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ IFSCCode }),
+        body: JSON.stringify(buildScopedBody(payload)),
       });
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Failed to fetch");
 
       // Backend response mein { result: [...] } aa raha hai
-      return data.result || [];
+      return data;
     } catch (error) {
       return rejectWithValue(error.message || "Something went wrong");
     }
@@ -26,6 +41,7 @@ export const get_userdata_manager = createAsyncThunk(
 
 const get_user_int = {
   User_data: [],
+  pagination: null,
   loading: false,
   error: null,
   loginMessage: "",
@@ -43,7 +59,8 @@ const get_user_manager_slice = createSlice({
       })
       .addCase(get_userdata_manager.fulfilled, (state, action) => {
         state.loading = false;
-        state.User_data = action.payload; // Multi-user array save hoga
+        state.User_data = getResult(action.payload); // Multi-user array save hoga
+        state.pagination = getPagination(action.payload);
         state.error = null;
       })
       .addCase(get_userdata_manager.rejected, (state, action) => {
@@ -56,18 +73,18 @@ const get_user_manager_slice = createSlice({
 
 export const get_accountdata_manager = createAsyncThunk(
   "getdata/accountdata_manager",
-  async (IFSCCode, { rejectWithValue }) => {
+  async (payload, { rejectWithValue }) => {
     try {
       const res = await fetch("http://localhost:3000/banking/manager/getaccount", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ IFSCCode }),
+        body: JSON.stringify(buildScopedBody(payload)),
       });
 
       const data = await res.json();
-      return data.result;
+      return data;
     } catch (error) {
       return rejectWithValue(error.message || "Something went wrong");
     }
@@ -76,6 +93,7 @@ export const get_accountdata_manager = createAsyncThunk(
 
 const get_aacount_int = {
   Account_data: [],
+  pagination: null,
   loading: false,
   error: null,
   loginMessage: "",
@@ -93,7 +111,8 @@ const get_account_manager_slice = createSlice({
       })
       .addCase(get_accountdata_manager.fulfilled, (state, action) => {
         state.loading = false;
-        state.Account_data = action.payload; // Multi-user array save hoga
+        state.Account_data = getResult(action.payload); // Multi-user array save hoga
+        state.pagination = getPagination(action.payload);
         state.error = null;
       })
       .addCase(get_accountdata_manager.rejected, (state, action) => {
@@ -105,18 +124,18 @@ const get_account_manager_slice = createSlice({
 
 export const get_transactiondata_manager = createAsyncThunk(
   "getdata/transaction_manager",
-  async (IFSCCode, { rejectWithValue }) => {
+  async (payload, { rejectWithValue }) => {
     try {
       const res = await fetch("http://localhost:3000/banking/manager/gettransaction", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ IFSCCode }),
+        body: JSON.stringify(buildScopedBody(payload)),
       });
 
       const data = await res.json();
-      return data.result;
+      return data;
     } catch (error) {
       return rejectWithValue(error.message || "Something went wrong");
     }
@@ -125,6 +144,7 @@ export const get_transactiondata_manager = createAsyncThunk(
 
 const get_transaction_int = {
   Transaction_data: [],
+  pagination: null,
   loading: false,
   error: null,
   loginMessage: "",
@@ -142,7 +162,8 @@ const get_transaction_manager_slice = createSlice({
       })
       .addCase(get_transactiondata_manager.fulfilled, (state, action) => {
         state.loading = false;
-        state.Transaction_data = action.payload; // Multi-user array save hoga
+        state.Transaction_data = getResult(action.payload); // Multi-user array save hoga
+        state.pagination = getPagination(action.payload);
         state.error = null;
       })
       .addCase(get_transactiondata_manager.rejected, (state, action) => {
@@ -154,18 +175,18 @@ const get_transaction_manager_slice = createSlice({
 
 export const get_employee_manager = createAsyncThunk(
   "getdata/employee_manager",
-  async (IFSCCode, { rejectWithValue }) => {
+  async (payload, { rejectWithValue }) => {
     try {
       const res = await fetch("http://localhost:3000/banking/manager/getemployee", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ IFSCCode }),
+        body: JSON.stringify(buildScopedBody(payload)),
       });
 
       const data = await res.json();
-      return data.result;
+      return data;
     } catch (error) {
       return rejectWithValue(error.message || "Something went wrong");
     }
@@ -174,6 +195,7 @@ export const get_employee_manager = createAsyncThunk(
 
 const get_employee_int = {
   Employee_data: [],
+  pagination: null,
   loading: false,
   error: null,
   loginMessage: "",
@@ -191,7 +213,8 @@ const get_employee_manager_slice = createSlice({
       })
       .addCase(get_employee_manager.fulfilled, (state, action) => {
         state.loading = false;
-        state.Employee_data = action.payload; // Multi-user array save hoga
+        state.Employee_data = getResult(action.payload); // Multi-user array save hoga
+        state.pagination = getPagination(action.payload);
         state.error = null;
       })
       .addCase(get_employee_manager.rejected, (state, action) => {

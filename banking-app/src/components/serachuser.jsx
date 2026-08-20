@@ -4,26 +4,34 @@ import "../css/sercgbranch.css";
 import { useSelector, useDispatch } from "react-redux";
 import { get_user_data } from "../features/getdata";
 import { search_getUser_data } from "../features/searchslice";
+import PaginationControls from "./PaginationControls";
 
 function SearchUser() {
     const usedispatch = useDispatch();
     const [search, setSearch] = useState("");
     const [click, setclick] = useState(false);
+    const [activeSearch, setActiveSearch] = useState("");
+    const [page, setPage] = useState(1);
 
-    const { user_data } = useSelector((state) => state.geting_user);
-    const { search_Userdata, loading, error, loginmessage } = useSelector((state) => state.search_User);
+    const { user_data, pagination } = useSelector((state) => state.geting_user);
+    const { search_Userdata, pagination: searchPagination, loading, error, loginmessage } = useSelector((state) => state.search_User);
     console.log(search_Userdata);
     useEffect(() => {
-        usedispatch(get_user_data());
-    }, [usedispatch]);
+        if (click) {
+            usedispatch(search_getUser_data({ search: activeSearch, page, limit: 10 }));
+        } else {
+            usedispatch(get_user_data({ page, limit: 10 }));
+        }
+    }, [usedispatch, click, activeSearch, page]);
 
     const handlesubmit = (e) => {
         e.preventDefault();
-        usedispatch(get_user_data());
-        usedispatch(search_getUser_data(search));
+        setActiveSearch(search);
+        setPage(1);
         setclick(true);
         console.log("Search user:", search);
     };
+    const currentPagination = click ? searchPagination : pagination;
     console.log(search_Userdata);
     return (
         <div className="cbs-branches">
@@ -112,6 +120,11 @@ function SearchUser() {
                         </tbody>
                     </table>
                 </div>
+                <PaginationControls
+                    pagination={currentPagination}
+                    page={page}
+                    onPageChange={setPage}
+                />
             </div>
         </div>
     );

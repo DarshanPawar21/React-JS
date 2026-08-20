@@ -1,6 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+const buildSearchBody = (payload) => {
+    if (payload && typeof payload === "object") {
+        return {
+            search: payload.search || "",
+            ...(payload.IFSCCode ? { IFSCCode: payload.IFSCCode } : {}),
+            ...(payload.page ? { page: payload.page } : {}),
+            ...(payload.limit ? { limit: payload.limit } : {})
+        };
+    }
+
+    return { search: payload || "" };
+};
+
+const getResult = (payload) => payload?.result || [];
+const getPagination = (payload) => payload?.pagination || null;
 
 export const search_getbranch_data = createAsyncThunk("search/branch", async (serachQ) => {
     try {
@@ -9,7 +24,7 @@ export const search_getbranch_data = createAsyncThunk("search/branch", async (se
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ search: serachQ })
+            body: JSON.stringify(buildSearchBody(serachQ))
         });
         const data = await res.json();
         console.log(data)
@@ -26,7 +41,7 @@ export const search_getUser_data = createAsyncThunk("search/users", async (serac
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ search: serach })
+            body: JSON.stringify(buildSearchBody(serach))
         });
         const data = await res.json();
         console.log(data)
@@ -43,11 +58,11 @@ export const search_getaccount_data = createAsyncThunk("search/Account", async (
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ search: serach })
+            body: JSON.stringify(buildSearchBody(serach))
         });
         const data = await res.json();
         console.log(data)
-        return data.result
+        return data
     } catch (err) {
         return console.log(err?.message || "Something went wrong");
     }
@@ -60,7 +75,7 @@ export const search_gettransaction_data = createAsyncThunk("search/Transaction",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ search: serach })
+            body: JSON.stringify(buildSearchBody(serach))
         });
         const data = await res.json();
         console.log(data)
@@ -72,6 +87,7 @@ export const search_gettransaction_data = createAsyncThunk("search/Transaction",
 
 const barnch_initialState = {
     search_brachdata: [],
+    pagination: null,
     loading: false,
     error: null,
     isAuthenticated: false,
@@ -92,7 +108,8 @@ export const searchbranch_Slice = createSlice({
             .addCase(search_getbranch_data.fulfilled, (state, action) => {
                 state.loading = false;
                 state.isAuthenticated = true;
-                state.search_brachdata = action.payload.result;
+                state.search_brachdata = getResult(action.payload);
+                state.pagination = getPagination(action.payload);
                 state.error = null;
                 state.loginMessage = action.payload?.message || "Adding successful";
             })
@@ -107,6 +124,7 @@ export const searchbranch_Slice = createSlice({
 
 const user_initialState = {
     search_Userdata: [],
+    pagination: null,
     loading: false,
     error: null,
     isAuthenticated: false,
@@ -127,7 +145,8 @@ export const searuser_Slice = createSlice({
             .addCase(search_getUser_data.fulfilled, (state, action) => {
                 state.loading = false;
                 state.isAuthenticated = true;
-                state.search_Userdata = action.payload.result;
+                state.search_Userdata = getResult(action.payload);
+                state.pagination = getPagination(action.payload);
                 state.error = null;
                 state.loginMessage = action.payload?.message || "Adding successful";
             })
@@ -142,6 +161,7 @@ export const searuser_Slice = createSlice({
 
 const Account_initiaState = {
     search_Account_data: [],
+    pagination: null,
     loading: false,
     error: null,
     isAuthenticated: false,
@@ -161,7 +181,8 @@ export const searAccount_Slice = createSlice({
             .addCase(search_getaccount_data.fulfilled, (state, action) => {
                 state.loading = false;
                 state.isAuthenticated = true;
-                state.search_Account_data = action.payload;
+                state.search_Account_data = getResult(action.payload);
+                state.pagination = getPagination(action.payload);
                 state.error = null;
                 state.loginMessage = action.payload?.message || "Adding successful";
             })
@@ -176,6 +197,7 @@ export const searAccount_Slice = createSlice({
 
 const Transaction_initilState = {
     Search_Transaction: [],
+    pagination: null,
     loading: false,
     error: null,
     isAuthenticated: false,
@@ -196,7 +218,8 @@ export const search_Transctiondata_Slice = createSlice({
             .addCase(search_gettransaction_data.fulfilled, (state, action) => {
                 state.loading = false;
                 state.isAuthenticated = true;
-                state.Search_Transaction = action.payload.result;
+                state.Search_Transaction = getResult(action.payload);
+                state.pagination = getPagination(action.payload);
                 state.error = null;
                 state.loginMessage = action.payload?.message || "Adding successful";
             })

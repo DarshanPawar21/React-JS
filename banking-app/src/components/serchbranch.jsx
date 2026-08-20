@@ -4,28 +4,37 @@ import { getbranchdata } from "../features/getdata";
 import { search_getbranch_data } from "../features/searchslice";
 import "../css/sercgbranch.css";
 import { useSelector, useDispatch } from "react-redux";
+import PaginationControls from "./PaginationControls";
 function SearchBranch() {
   const usedispatch = useDispatch();
   const [search, setSearch] = useState("");
-  const [click, setclick] = useState(false)
+  const [click, setclick] = useState(false);
+  const [activeSearch, setActiveSearch] = useState("");
+  const [page, setPage] = useState(1);
 
-  const { getbranch } = useSelector((state) => state.getbranch);
-  const { search_brachdata, loading, error, loginMessage } = useSelector((state) => state.serach_branch);
+  const { getbranch, pagination } = useSelector((state) => state.getbranch);
+  const { search_brachdata, pagination: searchPagination, loading, error, loginMessage } = useSelector((state) => state.serach_branch);
 
 
   // console.log(getbranch)
 
   useEffect(() => {
-    usedispatch(getbranchdata());
+    if (click) {
+      usedispatch(search_getbranch_data({ search: activeSearch, page, limit: 10 }));
+    } else {
+      usedispatch(getbranchdata({ page, limit: 10 }));
+    }
     // useDispatch(search_getbranch_data());
-  }, [usedispatch]);
+  }, [usedispatch, click, activeSearch, page]);
 
   const handlesubmit = (e) => {
     e.preventDefault();
-    usedispatch(search_getbranch_data(search))
-    setclick(true)
+    setActiveSearch(search);
+    setPage(1);
+    setclick(true);
     console.log(search)
   }
+  const currentPagination = click ? searchPagination : pagination;
   console.log(search_brachdata)
   return (
     <div className="cbs-branches">
@@ -115,7 +124,12 @@ function SearchBranch() {
               )}
             </tbody>
           </table>
-        </div>
+                </div>
+        <PaginationControls
+          pagination={currentPagination}
+          page={page}
+          onPageChange={setPage}
+        />
       </div>
     </div>
   );

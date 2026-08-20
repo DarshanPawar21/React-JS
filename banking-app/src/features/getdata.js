@@ -1,9 +1,21 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // import { rejectWithValue } from "@reduxjs/toolkit";
 
-export const getuserdata = createAsyncThunk("getdata/user", async () => {
+const buildPageQuery = (params = {}) => {
+    if (!params.page && !params.limit) return "";
+    const query = new URLSearchParams({
+        page: params.page || 1,
+        limit: params.limit || 10
+    });
+    return `?${query.toString()}`;
+};
+
+const getResult = (payload) => payload?.result || payload || [];
+const getPagination = (payload) => payload?.pagination || null;
+
+export const getuserdata = createAsyncThunk("getdata/user", async (params = {}) => {
     try {
-        const res = await fetch("http://localhost:3000/banking/getusers", {
+        const res = await fetch(`http://localhost:3000/banking/getusers${buildPageQuery(params)}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -11,31 +23,31 @@ export const getuserdata = createAsyncThunk("getdata/user", async () => {
         });
         const userdata = await res.json();
         // console.log(userdata)
-        return userdata.result
+        return userdata
     } catch (err) {
         return rejectWithValue(err.message);
     }
 })
 
-export const getaccountdata = createAsyncThunk("getdata/aacount", async () => {
+export const getaccountdata = createAsyncThunk("getdata/aacount", async (params = {}) => {
     try {
-        const res = await fetch("http://localhost:3000/banking/getaccount", {
+        const res = await fetch(`http://localhost:3000/banking/getaccount${buildPageQuery(params)}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
             },
         });
         const accountdata = await res.json();
-        return accountdata.result
+        return accountdata
         // console.log(accountdata);
     } catch (err) {
         return rejectWithValue(err.message);
     }
 });
 
-export const gettransaction = createAsyncThunk("getdata/transaction", async () => {
+export const gettransaction = createAsyncThunk("getdata/transaction", async (params = {}) => {
     try {
-        const res = await fetch("http://localhost:3000/banking/gettransaction", {
+        const res = await fetch(`http://localhost:3000/banking/gettransaction${buildPageQuery(params)}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -43,15 +55,15 @@ export const gettransaction = createAsyncThunk("getdata/transaction", async () =
         });
         const transactiondata = await res.json();
         // console.log(transactiondata);
-        return transactiondata.result
+        return transactiondata
     } catch (err) {
         return rejectWithValue(err.message);
     }
 });
 
-export const getbranchdata = createAsyncThunk("getdata/brench", async () => {
+export const getbranchdata = createAsyncThunk("getdata/brench", async (params = {}) => {
     try {
-        const res = await fetch("http://localhost:3000/banking/getbranch", {
+        const res = await fetch(`http://localhost:3000/banking/getbranch${buildPageQuery(params)}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -59,38 +71,38 @@ export const getbranchdata = createAsyncThunk("getdata/brench", async () => {
         });
         const getbranch = await res.json();
         console.log(getbranch)
-        return getbranch.result
+        return getbranch
     } catch (error) {
         return rejectWithValue(error.message);
     }
 }
 )
 
-export const get_user_data = createAsyncThunk("getdata/user", async () => {
+export const get_user_data = createAsyncThunk("getdata/user", async (params = {}) => {
     try {
-        const res = await fetch("http://localhost:3000/banking/getusers", {
+        const res = await fetch(`http://localhost:3000/banking/getusers${buildPageQuery(params)}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
             },
         });
         const get_user = await res.json();
-        return get_user.result
+        return get_user
     } catch (error) {
         return rejectWithValue(error.message);
     }
 })
 
-export const get_manager_data = createAsyncThunk("getdata/manager", async () => {
+export const get_manager_data = createAsyncThunk("getdata/manager", async (params = {}) => {
     try {
-        const res = await fetch("http://localhost:3000/banking/getmanager", {
+        const res = await fetch(`http://localhost:3000/banking/getmanager${buildPageQuery(params)}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
             },
         });
         const get_manager = await res.json();
-        return get_manager.result
+        return get_manager
     } catch (error) {
         return rejectWithValue(error.message);
     }
@@ -98,6 +110,7 @@ export const get_manager_data = createAsyncThunk("getdata/manager", async () => 
 
 const userInitialState = {
     userdata: [] || 0,
+    pagination: null,
     loading: false,
     error: null,
     loginmessage: ""
@@ -116,7 +129,8 @@ export const userSlice = createSlice({
             })
             .addCase(getuserdata.fulfilled, (state, action) => {
                 state.loading = false;
-                state.userdata = action.payload;
+                state.userdata = getResult(action.payload);
+                state.pagination = getPagination(action.payload);
                 state.error = null;
                 state.loginmessage = "Fetch successfuly !";
             })
@@ -129,6 +143,7 @@ export const userSlice = createSlice({
 
 const accountInitialState = {
     accountdata: [],
+    pagination: null,
     loading: false,
     error: null,
     loginmessage: ""
@@ -147,7 +162,8 @@ export const accountSlice = createSlice({
             .addCase(getaccountdata.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
-                state.accountdata = action.payload;
+                state.accountdata = getResult(action.payload);
+                state.pagination = getPagination(action.payload);
                 state.loginmessage = "Fetch successfuly !";
             })
             .addCase(getaccountdata.rejected, (state, action) => {
@@ -159,6 +175,7 @@ export const accountSlice = createSlice({
 
 const transactionInitialState = {
     transactiondata: [],
+    pagination: null,
     loading: false,
     error: null,
     loginmessage: ""
@@ -177,7 +194,8 @@ export const transactionSlice = createSlice({
             .addCase(gettransaction.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
-                state.transactiondata = action.payload;
+                state.transactiondata = getResult(action.payload);
+                state.pagination = getPagination(action.payload);
                 state.loginmessage = "Fetch successfuly !";
             })
             .addCase(gettransaction.rejected, (state, action) => {
@@ -189,6 +207,7 @@ export const transactionSlice = createSlice({
 
 const getbrancint = {
     getbranch: [],
+    pagination: null,
     loading: false,
     error: null,
     loginmessage: ""
@@ -207,7 +226,8 @@ export const getbrachdataSlice = createSlice({
             .addCase(getbranchdata.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
-                state.getbranch = action.payload;
+                state.getbranch = getResult(action.payload);
+                state.pagination = getPagination(action.payload);
                 state.loginmessage = "Fetch successfuly !";
             })
             .addCase(getbranchdata.rejected, (state, action) => {
@@ -219,6 +239,7 @@ export const getbrachdataSlice = createSlice({
 
 const user_intialState = {
     user_data: [],
+    pagination: null,
     loading: false,
     error: null,
     loginmessage: ""
@@ -238,7 +259,8 @@ export const get_user_slice = createSlice({
             .addCase(get_user_data.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
-                state.user_data = action.payload;
+                state.user_data = getResult(action.payload);
+                state.pagination = getPagination(action.payload);
                 state.loginmessage = "Fetch successfuly !";
             })
             .addCase(get_user_data.rejected, (state, action) => {
@@ -250,6 +272,7 @@ export const get_user_slice = createSlice({
 
 const manager_initialState = {
     Manager_data: [],
+    pagination: null,
     loading: false,
     error: null,
     loginmessage: ""
@@ -268,7 +291,8 @@ export const get_manager_slice = createSlice({
             .addCase(get_manager_data.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
-                state.Manager_data = action.payload;
+                state.Manager_data = getResult(action.payload);
+                state.pagination = getPagination(action.payload);
                 state.loginmessage = "Fetch successfuly !";
             })
             .addCase(get_manager_data.rejected, (state, action) => {
@@ -279,16 +303,16 @@ export const get_manager_slice = createSlice({
 
 })
 
-export const get_employee_data = createAsyncThunk("getdata/employee", async () => {
+export const get_employee_data = createAsyncThunk("getdata/employee", async (params = {}) => {
     try {
-        const res = await fetch("http://localhost:3000/banking/getemployee",{
+        const res = await fetch(`http://localhost:3000/banking/getemployee${buildPageQuery(params)}`,{
             method:"GET",
             headers:{
                 "Content-Type":"application/json"
             },
         });
         const Employee = await res.json();
-        return Employee.result
+        return Employee
     } catch (err) {
         return rejectWithValue(err.message);
     }
@@ -296,6 +320,7 @@ export const get_employee_data = createAsyncThunk("getdata/employee", async () =
 
 const employee_int ={
     Employee_data: [],
+    pagination: null,
     loading: false,
     error: null,
     loginmessage: ""
@@ -315,7 +340,8 @@ export const get_employee_slice = createSlice({
             .addCase(get_employee_data.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
-                state.Employee_data = action.payload;
+                state.Employee_data = getResult(action.payload);
+                state.pagination = getPagination(action.payload);
                 state.loginmessage = "Fetch successfuly !";
             })
             .addCase(get_employee_data.rejected, (state, action) => {

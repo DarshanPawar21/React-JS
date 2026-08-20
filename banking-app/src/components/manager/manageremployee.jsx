@@ -4,10 +4,12 @@ import "../../css/sercgbranch.css";
 import { useSelector, useDispatch } from "react-redux";
 import { get_manager_data, get_user_data, getaccountdata } from "../../features/getdata";
 import { get_userdata_manager, get_accountdata_manager, get_transactiondata_manager, get_employee_manager } from "../../features/manager_data/getdata_manager";
+import PaginationControls from "../PaginationControls";
 function Search_Manager_Employee() {
     const usedispatch = useDispatch();
     const [search, setSearch] = useState("");
     const [click, setclick] = useState(false);
+    const [page, setPage] = useState(1);
 
 
     const { Manager_data } = useSelector((state) => state.getmanager || {});
@@ -19,13 +21,13 @@ function Search_Manager_Employee() {
 
 
     const { search_Userdata, loading, error, loginmessage } = useSelector((state) => state.search_User);
-    const { Employee_data } = useSelector((state) => state.get_employee_manager);
+    const { Employee_data, pagination } = useSelector((state) => state.get_employee_manager);
 
 
     useEffect(() => {
         usedispatch(get_manager_data(Mr_IFSCCOde));
-        usedispatch(get_employee_manager(Mr_IFSCCOde));
-    }, [usedispatch, Mr_IFSCCOde]);
+        usedispatch(get_employee_manager({ IFSCCode: Mr_IFSCCOde, page, limit: 10 }));
+    }, [usedispatch, Mr_IFSCCOde, page]);
 
     const handlesubmit = (e) => {
         e.preventDefault();
@@ -96,6 +98,11 @@ function Search_Manager_Employee() {
                         </tbody>
                     </table>
                 </div>
+                <PaginationControls
+                    pagination={pagination}
+                    page={page}
+                    onPageChange={setPage}
+                />
             </div>
         </div>
     );

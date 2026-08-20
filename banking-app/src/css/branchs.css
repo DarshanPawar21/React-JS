@@ -1,54 +1,65 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 :root {
-  --cbs-navy-950: #0a0e1a;
-  --cbs-navy-800: #16213a;
-  --cbs-gold-500: #c9a227;
-  --cbs-slate-200: #e2e6ec;
-  --cbs-slate-500: #64748b;
+  --form-ink: #101828;
+  --form-muted: #667085;
+  --form-line: #d9e2ec;
+  --form-panel: #ffffff;
+  --form-page: #f5f7fb;
+  --form-navy: #122033;
+  --form-teal: #0f766e;
+  --form-gold: #b7791f;
 }
 
 .cbs-branch-form {
+  width: 100%;
+  min-height: calc(100vh - var(--cbs-navbar-height) - 36px);
+  padding: 24px;
+  border: 1px solid rgba(217, 226, 236, 0.85);
+  border-radius: 8px;
+  background: var(--form-panel);
+  box-shadow: 0 12px 30px rgba(16, 24, 40, 0.08);
+  box-sizing: border-box;
   font-family: "Inter", system-ui, sans-serif;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 1rem;
 }
 
 .cbs-branch-form__header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--form-line);
 }
 
 .cbs-branch-form__title {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--cbs-navy-950);
   margin: 0;
+  color: var(--form-ink);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 0;
 }
 
 .cbs-branch-form__subtitle {
-  font-size: 0.85rem;
-  color: var(--cbs-slate-500);
-  margin: 0.25rem 0 0;
+  margin: 6px 0 0;
+  color: var(--form-muted);
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .cbs-card {
+  border: 1px solid var(--form-line);
+  border-radius: 8px;
   background: #ffffff;
-  border-radius: 14px;
-  border: 1px solid rgba(15, 23, 41, 0.06);
-  box-shadow: 0 10px 30px rgba(10, 14, 26, 0.05);
+  box-shadow: 0 8px 20px rgba(16, 24, 40, 0.05);
 }
 
 .cbs-branch-form__card {
-  padding: 2rem;
+  max-width: 920px;
+  padding: 22px;
 }
 
 .cbs-branch-form__grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem 1.5rem;
-  margin-bottom: 1.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
 }
 
 .cbs-branch-form__full {
@@ -57,58 +68,85 @@
 
 .cbs-field label {
   display: block;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--cbs-navy-800);
-  margin-bottom: 0.4rem;
+  margin-bottom: 7px;
+  color: #344054;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.3px;
 }
 
 .cbs-field__input {
   width: 100%;
-  padding: 0.65rem 0.85rem;
-  border: 1px solid var(--cbs-slate-200);
-  border-radius: 10px;
-  font-size: 0.9rem;
-  color: var(--cbs-navy-950);
-  background: #ffffff;
+  height: 44px;
+  padding: 0 13px;
+  border: 1px solid var(--form-line);
+  border-radius: 8px;
   outline: none;
+  background: #ffffff;
+  color: var(--form-ink);
+  font-size: 14px;
+  font-weight: 600;
   box-sizing: border-box;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.cbs-field__input::placeholder {
+  color: #98a2b3;
 }
 
 .cbs-field__input:focus {
-  border-color: var(--cbs-gold-500);
-  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.14);
+  border-color: var(--form-teal);
+  box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.12);
 }
 
-.spe{
-  width: 210%;
+.spe {
+  width: 100%;
 }
-
-/* ---------- Actions & Buttons ---------- */
 
 .cbs-branch-form__actions {
   display: flex;
   justify-content: flex-end;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--cbs-slate-200);
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--form-line);
+}
+
+.cbs-form-message {
+  margin: 18px 0 0;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.cbs-form-message--error {
+  border: 1px solid #fecaca;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.cbs-form-message--success {
+  border: 1px solid #bbf7d0;
+  background: #f0fdf4;
+  color: #15803d;
 }
 
 .cbs-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.65rem 1.2rem;
-  border-radius: 8px;
-  font-size: 0.87rem;
-  font-weight: 600;
-  cursor: pointer;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 16px;
   border: 1px solid transparent;
-  transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
 }
 
 .cbs-btn svg {
@@ -117,29 +155,42 @@
 }
 
 .cbs-btn--warning {
-  background: linear-gradient(135deg, var(--cbs-gold-500), #b8901f);
+  background: var(--form-navy);
   color: #ffffff;
-  border-color: var(--cbs-gold-500);
+  box-shadow: 0 8px 18px rgba(18, 32, 51, 0.16);
 }
 
 .cbs-btn--warning:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 18px rgba(201, 162, 39, 0.25);
+  box-shadow: 0 12px 24px rgba(18, 32, 51, 0.2);
 }
 
 .cbs-btn--secondary {
-  background: transparent;
-  color: var(--cbs-slate-500);
-  border-color: var(--cbs-slate-200);
+  border-color: var(--form-line);
+  background: #ffffff;
+  color: var(--form-muted);
 }
 
 .cbs-btn--secondary:hover {
-  background: var(--cbs-slate-200);
-  color: var(--cbs-navy-950);
+  border-color: #b8c5d3;
+  background: #f8fafc;
+  color: var(--form-ink);
 }
 
-@media (max-width: 640px) {
+@media (max-width: 720px) {
+  .cbs-branch-form {
+    padding: 16px;
+  }
+
   .cbs-branch-form__grid {
     grid-template-columns: 1fr;
+  }
+
+  .cbs-branch-form__actions {
+    flex-direction: column;
+  }
+
+  .cbs-btn {
+    width: 100%;
   }
 }
