@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom"; // <-- Yeh zaroori import hai
+import "../css/dashboard.css";
 import Managersidebar from "../components/manager/managerSide";
 import Manager_Navbar from "../components/manager/navmanager";
 import Manager_Dashboarddetails from "../components/manager/managerdashboard";
@@ -14,10 +15,10 @@ function Managerdashboard() {
   return (
     <>
       <Manager_Navbar />
-    <div style={{ display: "flex" }}>
+    <div className="dashboard-layout">
       <Managersidebar />
-      
-      <main style={{ flex: 1, padding: "20px" }}>
+
+      <main>
         <Routes>
           <Route path="/" element={<Manager_Dashboarddetails />} />
           <Route path="/customers" element={<Search_Manager_User />} />

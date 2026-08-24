@@ -28,7 +28,7 @@ function Branch() {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(branchadding(branch))
-        navigate("/dashboard/branches")
+        navigate("/admin/dashboard/branches")
     };
 
     return (

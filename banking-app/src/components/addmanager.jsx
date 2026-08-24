@@ -27,7 +27,7 @@ function AddManager() {
         e.preventDefault();
         dispatch(Manager_Adding(user));
         console.log("Submitted User Data:", user);
-        navigate("/dashboard/manager");
+        navigate("/admin/dashboard/manager");
     };
     console.log(ManagerAdding_data);
     return (

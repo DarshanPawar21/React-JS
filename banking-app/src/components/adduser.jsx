@@ -27,7 +27,7 @@ function AddUser() {
         e.preventDefault();
         console.log("Submitted User Data:", user);
         dispatch(useradding(user));
-        navigate("/dashboard/customers");
+        navigate("/admin/dashboard/customers");
     };
 
     return (

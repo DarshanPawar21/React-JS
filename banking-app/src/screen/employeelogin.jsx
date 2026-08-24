@@ -1,119 +1,90 @@
-﻿ import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginEmployee } from "../features/enterdata";
+import "../css/home.css";
 
 const EmployeeLogin = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ Employee_email: "", Employee_password: "" });
-    const {employee_login_data,loading,error,loginMessage,isAuthenticated,user}= useSelector((state)=>state.employee_data_login)
-
-    // useEffect(() => {
-    //     if (isAuthenticated) {
-    //         navigate("/dashboard");
-    //     }
-    // }, [isAuthenticated, navigate]);
+    const { loading, error, loginMessage } = useSelector((state) => state.employee_data_login)
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((e) => ({ ...e, [name]: value }));
     };
-    // console.log(manager_login_data);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(loginEmployee(formData));
-        localStorage.setItem("employee_login",JSON.stringify(formData));
+        localStorage.setItem("employee_login", JSON.stringify(formData));
         navigate("/employee/dashboard")
     };
 
     return (
-        <div style={{
-            minHeight: '100vh',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '24px',
-            background: '#f4f7fb',
-        }}>
-            <div style={{
-                width: '100%',
-                maxWidth: '420px',
-                background: '#fff',
-                borderRadius: '14px',
-                boxShadow: '0 18px 40px rgba(0,0,0,0.08)',
-                padding: '32px',
-            }}>
-                <h1 style={{ margin: '0 0 18px', fontSize: '28px', color: '#1f2a44' }}>
-                    Employee Login
-                </h1>
+        <div className="bank-login">
+            <div className="bank-login__shell">
+                <section className="bank-login__hero">
+                    <div className="bank-brand">
+                        <span className="bank-brand__mark">E</span>
+                        <div>
+                            <span className="bank-brand__title">Employee Portal</span>
+                            <span className="bank-brand__subtitle">Customer Service Desk</span>
+                        </div>
+                    </div>
+                    <div className="bank-login__copy">
+                        <h1>Serve customers faster.</h1>
+                        <p>Create customers and accounts, review transactions, and process branch payments.</p>
+                    </div>
+                </section>
 
-                {loading && <p style={{ color: '#1a76d2' }}>Logging inâ€¦</p>}
-                {error && <p style={{ color: '#d32f2f' }}>{error}</p>}
-                {loginMessage && !error && (
-                    <p style={{ color: '#2e7d32' }}>{loginMessage}</p>
-                )}
+                <section className="bank-login__panel">
+                    <div className="bank-login__card">
+                        <span className="bank-section-kicker">Desk Access</span>
+                        <h2>Employee Login</h2>
+                        <p>Sign in to continue daily branch work.</p>
 
-                <form onSubmit={handleSubmit}>
-                    <label style={{ display: 'block', marginBottom: '8px', color: '#445668' }}>
-                        Email
-                    </label>
-                    <input
-                        type="email"
-                        name="Employee_email"
-                        value={formData.Employee_email}
-                        onChange={handleChange}
-                        required
-                        placeholder="Employee@example.com"
-                        style={{
-                            width: '100%',
-                            padding: '12px 14px',
-                            borderRadius: '10px',
-                            border: '1px solid #d4d7dd',
-                            marginBottom: '16px',
-                            fontSize: '15px',
-                        }}
-                    />
+                        {loading && <p className="bank-login__message bank-login__message--info">Logging in...</p>}
+                        {error && <p className="bank-login__message bank-login__message--error">{error}</p>}
+                        {loginMessage && !error && (
+                            <p className="bank-login__message bank-login__message--success">{loginMessage}</p>
+                        )}
 
-                    <label style={{ display: 'block', marginBottom: '8px', color: '#445668' }}>
-                        Password
-                    </label>
-                    <input
-                        type="password"
-                        name="Employee_password"
-                        value={formData.Employee_password}
-                        onChange={handleChange}
-                        required
-                        placeholder="Enter your password"
-                        style={{
-                            width: '100%',
-                            padding: '12px 14px',
-                            borderRadius: '10px',
-                            border: '1px solid #d4d7dd',
-                            marginBottom: '24px',
-                            fontSize: '15px',
-                        }}
-                    />
+                        <form className="bank-login__form" onSubmit={handleSubmit}>
+                            <div className="bank-login__field">
+                                <label>Email</label>
+                                <input
+                                    type="email"
+                                    name="Employee_email"
+                                    value={formData.Employee_email}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="employee@example.com"
+                                />
+                            </div>
 
-                    <button
-                        type="submit"
-                        style={{
-                            width: '100%',
-                            padding: '13px 16px',
-                            borderRadius: '10px',
-                            border: 'none',
-                            background: '#1f62f0',
-                            color: '#fff',
-                            fontSize: '16px',
-                            cursor: 'pointer',
-                        }}>
-                        Login
-                    </button>
-                </form>
+                            <div className="bank-login__field">
+                                <label>Password</label>
+                                <input
+                                    type="password"
+                                    name="Employee_password"
+                                    value={formData.Employee_password}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="Enter your password"
+                                />
+                            </div>
+
+                            <button className="bank-login__button" type="submit">
+                                Login
+                            </button>
+                        </form>
+                    </div>
+                </section>
             </div>
         </div>
     );
 };
 
 export default EmployeeLogin;
-

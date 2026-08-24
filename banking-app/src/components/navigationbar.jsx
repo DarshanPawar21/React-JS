@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../css/nav.css"
 function Navbar() {
   return (
@@ -26,9 +27,9 @@ function Navbar() {
         </div>
 
         <div className="cbs-navbar__actions">
-          <div className="cbs-navbar__avatar" title="Admin">
+          <Link to={"/"} className="cbs-navbar__avatar px-5 text-decoration-none" title="Admin">
             Admin
-          </div>
+          </Link>
         </div>
       </div>
     </nav>

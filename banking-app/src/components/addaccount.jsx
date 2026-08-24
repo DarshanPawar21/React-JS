@@ -25,7 +25,7 @@ const { Account_data, loading, error, loginMessage } = useSelector((state) => st
         e.preventDefault();
         dispatch(Account_Adding(user));
         console.log("Submitted User Data:", user);
-        navigate("/dashboard/account");
+        navigate("/admin/dashboard/account");
     };
 
     return (

@@ -1,72 +1,359 @@
-.simple-dashboard {
-  padding: 24px;
-  background: #f8fafc;
-  min-height: calc(100vh - var(--cbs-navbar-height, 0px));
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+.bank-home,
+.bank-login {
+  min-height: 100vh;
+  padding: 34px;
+  background:
+    radial-gradient(circle at 16% 12%, rgba(15, 118, 110, 0.14), transparent 28%),
+    linear-gradient(135deg, #f6f8fb 0%, #edf4f2 48%, #f8fafc 100%);
+  color: #101828;
+  font-family: "Inter", system-ui, sans-serif;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
-  flex: 1;
 }
 
-.simple-dashboard__header {
-  margin-bottom: 24px;
+.bank-home__shell,
+.bank-login__shell {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.95fr) minmax(360px, 1.05fr);
+  gap: 34px;
+  width: min(1180px, 100%);
+  min-height: calc(100vh - 68px);
+  margin: 0 auto;
+  align-items: stretch;
 }
 
-.simple-dashboard__header h1 {
+.bank-home__hero,
+.bank-login__hero {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 560px;
+  padding: 34px;
+  border-radius: 18px;
+  background:
+    linear-gradient(160deg, rgba(18, 32, 51, 0.94), rgba(15, 46, 47, 0.95)),
+    url("../assets/hero.png") center/cover;
+  color: #ffffff;
+  box-shadow: 0 24px 50px rgba(18, 32, 51, 0.22);
+}
+
+.bank-home__hero::after,
+.bank-login__hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 28px 28px auto;
+  width: 170px;
+  height: 170px;
+  border: 1px solid rgba(248, 211, 122, 0.32);
+  border-radius: 22px;
+  transform: rotate(10deg);
+}
+
+.bank-brand {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bank-brand__mark {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: #f8d37a;
+  color: #122033;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.bank-brand__title {
+  display: block;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.bank-brand__subtitle {
+  display: block;
+  margin-top: 3px;
+  color: #a7f3d0;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.bank-home__copy,
+.bank-login__copy {
+  position: relative;
+  z-index: 1;
+  max-width: 560px;
+}
+
+.bank-home__copy h1,
+.bank-login__copy h1 {
   margin: 0;
-  font-size: 28px;
-  color: #0f1729;
+  font-size: clamp(40px, 6vw, 68px);
+  font-weight: 900;
+  line-height: 0.98;
+  letter-spacing: 0;
 }
 
-.simple-dashboard__header p {
-  margin: 6px 0 0;
-  color: #64748b;
+.bank-home__copy p,
+.bank-login__copy p {
+  margin: 18px 0 0;
+  color: #d8e7e5;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.7;
 }
 
-/* Cards Grid Layout */
-.role-selection__cards {
+.bank-home__stats {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.bank-home__stat {
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.bank-home__stat strong {
+  display: block;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.bank-home__stat span {
+  display: block;
+  margin-top: 5px;
+  color: #cfe8e4;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.bank-home__panel,
+.bank-login__panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 34px;
+  border: 1px solid rgba(217, 226, 236, 0.9);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 24px 50px rgba(16, 24, 40, 0.12);
+}
+
+.bank-section-kicker {
+  color: #0f766e;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.bank-home__panel h2,
+.bank-login__card h2 {
+  margin: 10px 0 8px;
+  color: #101828;
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.bank-home__panel > p,
+.bank-login__card > p {
+  margin: 0 0 24px;
+  color: #667085;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.role-selection__cards {
+  display: grid;
   gap: 16px;
 }
 
-/* Interactive Card Styling */
 .role-selection__card {
-  background: white;
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+  padding: 22px;
+  border: 1px solid #d9e2ec;
+  border-radius: 14px;
+  background: #ffffff;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-  border: 2px solid transparent;
+  box-shadow: 0 10px 24px rgba(16, 24, 40, 0.06);
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.role-selection__card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5px;
+  background: #0f766e;
+}
+
+.role-selection__card:nth-child(2)::before {
+  background: #b7791f;
+}
+
+.role-selection__card:nth-child(3)::before {
+  background: #2563eb;
 }
 
 .role-selection__card:hover {
+  border-color: rgba(15, 118, 110, 0.36);
+  box-shadow: 0 18px 34px rgba(16, 24, 40, 0.11);
   transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
-  border-color: #2563eb;
 }
 
 .role-icon {
-  font-size: 32px;
-  margin-bottom: 12px;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 14px;
+  border-radius: 12px;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-size: 0;
+}
+
+.role-icon::after {
+  content: "CBS";
+  font-size: 12px;
+  font-weight: 900;
 }
 
 .role-selection__card h3 {
-  margin: 0 0 8px;
+  margin: 0 0 7px;
+  color: #101828;
   font-size: 20px;
-  color: #0f1729;
+  font-weight: 900;
 }
 
 .role-selection__card p {
   margin: 0;
+  color: #667085;
   font-size: 14px;
-  color: #64748b;
-  line-height: 1.5;
+  font-weight: 500;
+  line-height: 1.6;
 }
 
-/* Responsive Breakpoint */
-@media (max-width: 768px) {
-  .role-selection__cards {
+.bank-login__card {
+  width: min(100%, 430px);
+  margin: 0 auto;
+}
+
+.bank-login__message {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.bank-login__message--info {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.bank-login__message--error {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.bank-login__message--success {
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.bank-login__form {
+  display: grid;
+  gap: 14px;
+}
+
+.bank-login__field label {
+  display: block;
+  margin-bottom: 8px;
+  color: #344054;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.bank-login__field input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid #d9e2ec;
+  border-radius: 12px;
+  outline: none;
+  color: #101828;
+  font-size: 15px;
+  font-weight: 600;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.bank-login__field input:focus {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.12);
+}
+
+.bank-login__button {
+  height: 50px;
+  margin-top: 8px;
+  border: 0;
+  border-radius: 12px;
+  background: #122033;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 900;
+  box-shadow: 0 14px 26px rgba(18, 32, 51, 0.18);
+}
+
+@media (max-width: 900px) {
+  .bank-home__shell,
+  .bank-login__shell {
+    grid-template-columns: 1fr;
+  }
+
+  .bank-home__hero,
+  .bank-login__hero {
+    min-height: 420px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bank-home,
+  .bank-login {
+    padding: 16px;
+  }
+
+  .bank-home__panel,
+  .bank-login__panel,
+  .bank-home__hero,
+  .bank-login__hero {
+    padding: 24px;
+    border-radius: 14px;
+  }
+
+  .bank-home__stats {
     grid-template-columns: 1fr;
   }
 }

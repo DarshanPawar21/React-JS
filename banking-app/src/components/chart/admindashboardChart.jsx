@@ -26,7 +26,7 @@ function DashboardChart() {
   const { userdata = [] } = useSelector((state) => state.getuser);
   const { accountdata = [] } = useSelector((state) => state.getaccount);
   const { transactiondata = [] } = useSelector((state) => state.gettransaction);
-  const { getbranch = [] } = useSelector((state) => state.getbranch);
+  // const { getbranch = [] } = useSelector((state) => state.getbranch);
   const { Employee_data = [] } = useSelector((state) => state.get_employeedata);
 
   // Chart Data Configuration
@@ -35,7 +35,7 @@ function DashboardChart() {
       "Customers",
       "Accounts",
       "Transactions",
-      "Branches",
+      // "Branches",
       "Employees",
     ],
     datasets: [
@@ -45,7 +45,7 @@ function DashboardChart() {
           userdata?.length || 0,
           accountdata?.length || 0,
           transactiondata?.length || 0,
-          getbranch?.length || 0,
+          // getbranch?.length || 0,
           Employee_data?.length || 0,
         ],
         backgroundColor: [

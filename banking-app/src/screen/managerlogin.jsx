@@ -1,115 +1,88 @@
- import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginManager } from "../features/enterdata.js";
+import "../css/home.css";
 
 const ManagerLogin = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ email: "", password: "" });
 
-    const {manager_login_data,loading,error,loginMessage,isAuthenticated,user} = useSelector((state)=>state.manager_Login)
-    // useEffect(() => {
-    //     if (isAuthenticated) {
-    //         navigate("/dashboard");
-    //     }
-    // }, [isAuthenticated, navigate]);
+    const { loading, error, loginMessage } = useSelector((state) => state.manager_Login)
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((e) => ({ ...e, [name]: value }));
     };
-    console.log(manager_login_data);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(loginManager(formData));
-        localStorage.setItem("manager_login",JSON.stringify(formData));
+        localStorage.setItem("manager_login", JSON.stringify(formData));
         navigate("/manager/dashboard")
     };
 
     return (
-        <div style={{
-            minHeight: '100vh',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '24px',
-            background: '#f4f7fb',
-        }}>
-            <div style={{
-                width: '100%',
-                maxWidth: '420px',
-                background: '#fff',
-                borderRadius: '14px',
-                boxShadow: '0 18px 40px rgba(0,0,0,0.08)',
-                padding: '32px',
-            }}>
-                <h1 style={{ margin: '0 0 18px', fontSize: '28px', color: '#1f2a44' }}>
-                    Manager Login
-                </h1>
+        <div className="bank-login">
+            <div className="bank-login__shell">
+                <section className="bank-login__hero">
+                    <div className="bank-brand">
+                        <span className="bank-brand__mark">M</span>
+                        <div>
+                            <span className="bank-brand__title">Manager Portal</span>
+                            <span className="bank-brand__subtitle">Branch Operations</span>
+                        </div>
+                    </div>
+                    <div className="bank-login__copy">
+                        <h1>Run your branch with clarity.</h1>
+                        <p>Track customers, accounts, transactions, and employees connected to your branch.</p>
+                    </div>
+                </section>
 
-                {loading && <p style={{ color: '#1a76d2' }}>Logging in…</p>}
-                {error && <p style={{ color: '#d32f2f' }}>{error}</p>}
-                {loginMessage && !error && (
-                    <p style={{ color: '#2e7d32' }}>{loginMessage}</p>
-                )}
+                <section className="bank-login__panel">
+                    <div className="bank-login__card">
+                        <span className="bank-section-kicker">Branch Access</span>
+                        <h2>Manager Login</h2>
+                        <p>Sign in to manage branch activity.</p>
 
-                <form onSubmit={handleSubmit}>
-                    <label style={{ display: 'block', marginBottom: '8px', color: '#445668' }}>
-                        Email
-                    </label>
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        placeholder="Manager@example.com"
-                        style={{
-                            width: '100%',
-                            padding: '12px 14px',
-                            borderRadius: '10px',
-                            border: '1px solid #d4d7dd',
-                            marginBottom: '16px',
-                            fontSize: '15px',
-                        }}
-                    />
+                        {loading && <p className="bank-login__message bank-login__message--info">Logging in...</p>}
+                        {error && <p className="bank-login__message bank-login__message--error">{error}</p>}
+                        {loginMessage && !error && (
+                            <p className="bank-login__message bank-login__message--success">{loginMessage}</p>
+                        )}
 
-                    <label style={{ display: 'block', marginBottom: '8px', color: '#445668' }}>
-                        Password
-                    </label>
-                    <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                        placeholder="Enter your password"
-                        style={{
-                            width: '100%',
-                            padding: '12px 14px',
-                            borderRadius: '10px',
-                            border: '1px solid #d4d7dd',
-                            marginBottom: '24px',
-                            fontSize: '15px',
-                        }}
-                    />
+                        <form className="bank-login__form" onSubmit={handleSubmit}>
+                            <div className="bank-login__field">
+                                <label>Email</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="manager@example.com"
+                                />
+                            </div>
 
-                    <button
-                        type="submit"
-                        style={{
-                            width: '100%',
-                            padding: '13px 16px',
-                            borderRadius: '10px',
-                            border: 'none',
-                            background: '#1f62f0',
-                            color: '#fff',
-                            fontSize: '16px',
-                            cursor: 'pointer',
-                        }}>
-                        Login
-                    </button>
-                </form>
+                            <div className="bank-login__field">
+                                <label>Password</label>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="Enter your password"
+                                />
+                            </div>
+
+                            <button className="bank-login__button" type="submit">
+                                Login
+                            </button>
+                        </form>
+                    </div>
+                </section>
             </div>
         </div>
     );
