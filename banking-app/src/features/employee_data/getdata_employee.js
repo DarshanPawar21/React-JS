@@ -18,7 +18,7 @@ const getPagination = (payload) => payload?.pagination || null;
 const createEmployeeScopedThunk = (type, endpoint) =>
   createAsyncThunk(type, async (payload, { rejectWithValue }) => {
     try {
-      const res = await fetch(`http://localhost:3000/banking/employee/${endpoint}`, {
+      const res = await fetch(`https://node-js-8r22.vercel.app/banking/employee/${endpoint}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

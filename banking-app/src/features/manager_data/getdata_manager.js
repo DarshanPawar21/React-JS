@@ -20,7 +20,7 @@ export const get_userdata_manager = createAsyncThunk(
   "getdata/userdata_manager",
   async (payload, { rejectWithValue }) => {
     try {
-      const res = await fetch("http://localhost:3000/banking/manager/getuser", {
+      const res = await fetch("https://node-js-8r22.vercel.app/banking/manager/getuser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -75,7 +75,7 @@ export const get_accountdata_manager = createAsyncThunk(
   "getdata/accountdata_manager",
   async (payload, { rejectWithValue }) => {
     try {
-      const res = await fetch("http://localhost:3000/banking/manager/getaccount", {
+      const res = await fetch("https://node-js-8r22.vercel.app/banking/manager/getaccount", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -126,7 +126,7 @@ export const get_transactiondata_manager = createAsyncThunk(
   "getdata/transaction_manager",
   async (payload, { rejectWithValue }) => {
     try {
-      const res = await fetch("http://localhost:3000/banking/manager/gettransaction", {
+      const res = await fetch("https://node-js-8r22.vercel.app/banking/manager/gettransaction", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -177,7 +177,7 @@ export const get_employee_manager = createAsyncThunk(
   "getdata/employee_manager",
   async (payload, { rejectWithValue }) => {
     try {
-      const res = await fetch("http://localhost:3000/banking/manager/getemployee", {
+      const res = await fetch("https://node-js-8r22.vercel.app/banking/manager/getemployee", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

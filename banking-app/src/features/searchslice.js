@@ -19,7 +19,7 @@ const getPagination = (payload) => payload?.pagination || null;
 
 export const search_getbranch_data = createAsyncThunk("search/branch", async (serachQ) => {
     try {
-        const res = await fetch("http://localhost:3000/banking/searchbranch", {
+        const res = await fetch("https://node-js-8r22.vercel.app/banking/searchbranch", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -36,7 +36,7 @@ export const search_getbranch_data = createAsyncThunk("search/branch", async (se
 
 export const search_getUser_data = createAsyncThunk("search/users", async (serach) => {
     try {
-        const res = await fetch("http://localhost:3000/banking/searchuser", {
+        const res = await fetch("https://node-js-8r22.vercel.app/banking/searchuser", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -53,7 +53,7 @@ export const search_getUser_data = createAsyncThunk("search/users", async (serac
 
 export const search_getaccount_data = createAsyncThunk("search/Account", async (serach) => {
     try {
-        const res = await fetch("http://localhost:3000/banking/searchAccount", {
+        const res = await fetch("https://node-js-8r22.vercel.app/banking/searchAccount", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -70,7 +70,7 @@ export const search_getaccount_data = createAsyncThunk("search/Account", async (
 
 export const search_gettransaction_data = createAsyncThunk("search/Transaction", async (serach) => {
     try {
-        const res = await fetch("http://localhost:3000/banking/searchTransaction", {
+        const res = await fetch("https://node-js-8r22.vercel.app/banking/searchTransaction", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

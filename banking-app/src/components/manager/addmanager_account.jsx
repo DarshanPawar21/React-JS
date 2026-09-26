@@ -40,7 +40,7 @@ function Add_Account_Manager() {
         e.preventDefault();
         dispatch(Account_Adding(user));
         console.log("Submitted User Data:", user);
-        navigate("/dashboard/account");
+        navigate("/manager/dashboard/account");
     };
 
     return (

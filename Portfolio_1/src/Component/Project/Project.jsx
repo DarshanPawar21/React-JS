@@ -9,13 +9,13 @@ import s6 from "../../assets/s6.png";
 
 const projects = [
   {
-    title: "Todo",
-    image: s1,
-    link: "https://github.com/DarshanPawar21/JavaScript/blob/main/TODO/output.md",
+    title: "HRMS",
+    image: s6,
+    link: "https://drive.google.com/file/d/14tLbJCI6QasGYIoC_J1W3ajFagb4LhoE/view",
     text: "A simple task list that helps users organize daily work, prioritize important items, and stay in control of their schedule."
   },
   {
-    title: "Quiz App",
+    title: "Banking App",
     image: s2,
     link: "https://drive.google.com/file/d/1OD0JLDT1IPvSxBNJU7-CGNr-N4FQqiOj/view",
     text: "A quiz experience focused on smooth question flow, score handling, and responsive layouts across different screen sizes."
@@ -48,23 +48,11 @@ const Project = () => {
         
         <div className="row g-4 mt-2">
           {/* HRMS Project - Full Width (पूरा बड़ा) */}
-          <div className="col-12">
-            {/* यहाँ hrms-large-card क्लास जोड़ी है */}
-            <article className="project-card hrms-large-card h-100">
-              <img src={s6} alt="HRMS Project" />
-              <div className="project-body">
-                <h3 className="text-center">HRMS</h3>
-                <p className="text-center">A human resource management system (HRMS) designed to streamline employee data, attendance, and leave management for efficient HR operations.</p>
-                <a className="btn accent-btn w-100" href="https://drive.google.com/file/d/14tLbJCI6QasGYIoC_J1W3ajFagb4LhoE/view" target="_blank" rel="noopener noreferrer">
-                  Go To
-                </a>
-              </div>
-            </article>
-          </div>
+          
 
           {/* Remaining Projects - Grid Layout */}
           {projects.map((project) => (
-            <div className={project.title === "Food Delivery App" || project.title === "Weather App" ? "col-12 col-md-6 col-xl-6" : "col-12 col-md-6 col-xl-4"} key={project.title}>
+            <div className={project.title === "HRMS" || project.title === "Banking App" ? "col-12 col-md-6 col-xl-6" : "col-12 col-md-6 col-xl-4"} key={project.title}>
               <article className={`project-card h-100 ${project.title === "Food Delivery App" || project.title === "Weather App" ? "wide-card" : ""}`}>
                 <img src={project.image} alt={project.title} />
                 <div className="project-body">

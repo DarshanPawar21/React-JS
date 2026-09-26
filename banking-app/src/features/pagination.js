@@ -4,7 +4,7 @@ export const fetchUserPagination = createAsyncThunk(
     "user/fetchPagination",
     async ({ page }, { rejectWithValue }) => {
         try {
-            const res = await fetch("http://localhost:3000/userpage", {
+            const res = await fetch("https://node-js-8r22.vercel.app/userpage", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

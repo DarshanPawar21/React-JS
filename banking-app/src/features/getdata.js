@@ -15,7 +15,7 @@ const getPagination = (payload) => payload?.pagination || null;
 
 export const getuserdata = createAsyncThunk("getdata/user", async (params = {}) => {
     try {
-        const res = await fetch(`http://localhost:3000/banking/getusers${buildPageQuery(params)}`, {
+        const res = await fetch(`https://node-js-8r22.vercel.app/banking/getusers${buildPageQuery(params)}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -31,7 +31,7 @@ export const getuserdata = createAsyncThunk("getdata/user", async (params = {}) 
 
 export const getaccountdata = createAsyncThunk("getdata/aacount", async (params = {}) => {
     try {
-        const res = await fetch(`http://localhost:3000/banking/getaccount${buildPageQuery(params)}`, {
+        const res = await fetch(`https://node-js-8r22.vercel.app/banking/getaccount${buildPageQuery(params)}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -47,7 +47,7 @@ export const getaccountdata = createAsyncThunk("getdata/aacount", async (params 
 
 export const gettransaction = createAsyncThunk("getdata/transaction", async (params = {}) => {
     try {
-        const res = await fetch(`http://localhost:3000/banking/gettransaction${buildPageQuery(params)}`, {
+        const res = await fetch(`https://node-js-8r22.vercel.app/banking/gettransaction${buildPageQuery(params)}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -63,7 +63,7 @@ export const gettransaction = createAsyncThunk("getdata/transaction", async (par
 
 export const getbranchdata = createAsyncThunk("getdata/brench", async (params = {}) => {
     try {
-        const res = await fetch(`http://localhost:3000/banking/getbranch${buildPageQuery(params)}`, {
+        const res = await fetch(`https://node-js-8r22.vercel.app/banking/getbranch${buildPageQuery(params)}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -80,7 +80,7 @@ export const getbranchdata = createAsyncThunk("getdata/brench", async (params = 
 
 export const get_user_data = createAsyncThunk("getdata/user", async (params = {}) => {
     try {
-        const res = await fetch(`http://localhost:3000/banking/getusers${buildPageQuery(params)}`, {
+        const res = await fetch(`https://node-js-8r22.vercel.app/banking/getusers${buildPageQuery(params)}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -95,7 +95,7 @@ export const get_user_data = createAsyncThunk("getdata/user", async (params = {}
 
 export const get_manager_data = createAsyncThunk("getdata/manager", async (params = {}) => {
     try {
-        const res = await fetch(`http://localhost:3000/banking/getmanager${buildPageQuery(params)}`, {
+        const res = await fetch(`https://node-js-8r22.vercel.app/banking/getmanager${buildPageQuery(params)}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -305,7 +305,7 @@ export const get_manager_slice = createSlice({
 
 export const get_employee_data = createAsyncThunk("getdata/employee", async (params = {}) => {
     try {
-        const res = await fetch(`http://localhost:3000/banking/getemployee${buildPageQuery(params)}`,{
+        const res = await fetch(`https://node-js-8r22.vercel.app/banking/getemployee${buildPageQuery(params)}`,{
             method:"GET",
             headers:{
                 "Content-Type":"application/json"

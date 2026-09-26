@@ -24,7 +24,7 @@ export const loginAdmin = createAsyncThunk(
     "counter/loginAdmin",
     async ({ email, password }) => {
         try {
-            const res = await fetch("http://localhost:3000/banking/loginadmin", {
+            const res = await fetch("https://node-js-8r22.vercel.app/banking/loginadmin", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -43,7 +43,7 @@ export const loginManager = createAsyncThunk(
     "counter/loginManager",
     async ({ email, password }) => {
         try {
-            const res = await fetch("http://localhost:3000/banking/loginmanager", {
+            const res = await fetch("https://node-js-8r22.vercel.app/banking/loginmanager", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -62,7 +62,7 @@ export const branchadding = createAsyncThunk(
     "adding/branch",
     async ({ branchName, branchCity, IFSCCode, branchPhone }) => {
         try {
-            const res = await fetch("http://localhost:3000/banking/addBranch", {
+            const res = await fetch("https://node-js-8r22.vercel.app/banking/addBranch", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -79,7 +79,7 @@ export const branchadding = createAsyncThunk(
 
 export const useradding = createAsyncThunk("adding/user", async ({ name, email, aadharNumber, phone, password, IFSCCode }) => {
     try {
-        const res = await fetch("http://localhost:3000/banking/addUser", {
+        const res = await fetch("https://node-js-8r22.vercel.app/banking/addUser", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -102,7 +102,7 @@ export const useradding = createAsyncThunk("adding/user", async ({ name, email, 
 
 export const Account_Adding = createAsyncThunk("addind/account", async ({ IFSCCode, aadharNumber, accountType, balance }) => {
     try {
-        const res = await fetch("http://localhost:3000/banking/addAccount", {
+        const res = await fetch("https://node-js-8r22.vercel.app/banking/addAccount", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -126,7 +126,7 @@ export const Employee_Transaction_Adding = createAsyncThunk(
     "adding/employeeTransaction",
     async ({ accountNumber, transactionType, tranamount, IFSCCode }, { rejectWithValue }) => {
         try {
-            const res = await fetch("http://localhost:3000/banking/transacation", {
+            const res = await fetch("https://node-js-8r22.vercel.app/banking/transacation", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -153,7 +153,7 @@ export const Employee_Transaction_Adding = createAsyncThunk(
 
 export const Manager_Adding = createAsyncThunk("adding/manager", async ({ name, email, aadharNumber, phone, password, IFSCCode }) => {
     try {
-        const res = await fetch("http://localhost:3000/banking/addmanager", {
+        const res = await fetch("https://node-js-8r22.vercel.app/banking/addmanager", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -412,7 +412,7 @@ export const manager_login_slice = createSlice({
 export const Employee_adding = createAsyncThunk("adding/employee", async ({ 
     Employee_name, Employee_email, Employee_aadharNumber, Employee_phone, Employee_password, IFSCCode }) => {
     try {
-        const res = await fetch("http://localhost:3000/banking/addemployee", {
+        const res = await fetch("https://node-js-8r22.vercel.app/banking/addemployee", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -469,7 +469,7 @@ export const loginEmployee = createAsyncThunk(
     "counter/loginEmployee",
     async ({ Employee_email, Employee_password }) => {
         try {
-            const res = await fetch("http://localhost:3000/banking/loginemployee", {
+            const res = await fetch("https://node-js-8r22.vercel.app/banking/loginemployee", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
