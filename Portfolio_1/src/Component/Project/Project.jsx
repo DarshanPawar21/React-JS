@@ -12,13 +12,13 @@ const projects = [
     title: "HRMS",
     image: s6,
     link: "https://drive.google.com/file/d/14tLbJCI6QasGYIoC_J1W3ajFagb4LhoE/view",
-    text: "A simple task list that helps users organize daily work, prioritize important items, and stay in control of their schedule."
+    text: "A full-stack HRMS to manage employees, attendance, payroll, and leave — all from one centralized dashboard."
   },
   {
     title: "Banking App",
     image: s2,
     link: "https://drive.google.com/file/d/1OD0JLDT1IPvSxBNJU7-CGNr-N4FQqiOj/view",
-    text: "A quiz experience focused on smooth question flow, score handling, and responsive layouts across different screen sizes."
+    text: "A full-stack banking app to manage accounts, transactions, and loans — with secure, role-based access."
   },
   {
     title: "Task Manager",
