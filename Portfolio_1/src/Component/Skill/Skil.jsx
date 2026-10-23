@@ -41,6 +41,7 @@ const Skills = () => {
             <motion.a
               className="skill-pill"
               href={url[index]}
+              target="_blank"
               key={skill}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
