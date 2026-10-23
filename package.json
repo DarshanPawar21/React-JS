@@ -2,7 +2,10 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
     "axios": "^1.15.2",
+    "create": "^0.5.5",
     "react_redux": "^1.2.1",
-    "react-redux": "^9.2.0"
+    "react-redux": "^9.2.0",
+    "todo": "^1.1.0",
+    "vite": "^8.3.5"
   }
 }

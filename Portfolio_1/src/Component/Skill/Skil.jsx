@@ -11,11 +11,25 @@ const skills = [
   "React JS",
   "Next JS",
   "C++",
-  "Python",
   "Node JS",
   "Mongo DB",
   "SQLite",
 ];
+
+const url = [
+  "https://github.com/DarshanPawar21/My-Work",
+  "https://github.com/DarshanPawar21/CSS-Projects",
+  "https://github.com/DarshanPawar21/MQ-WORK",
+  "https://github.com/DarshanPawar21/Bootstrap",
+  "https://github.com/DarshanPawar21/C-LAnguage",
+  "https://github.com/DarshanPawar21/JavaScript",
+  "https://github.com/DarshanPawar21/React-JS",
+  "https://github.com/DarshanPawar21/Next-JS",
+  "https://github.com/DarshanPawar21/CPP",
+  "https://github.com/DarshanPawar21/NODE-JS",
+  "https://github.com/DarshanPawar21/NODE-JS",
+  "https://github.com/DarshanPawar21/NODE-JS"
+]
 
 const Skills = () => {
   return (
@@ -26,7 +40,7 @@ const Skills = () => {
           {skills.map((skill, index) => (
             <motion.a
               className="skill-pill"
-              href="https://github.com/DarshanPawar21/My-Work"
+              href={url[index]}
               key={skill}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
