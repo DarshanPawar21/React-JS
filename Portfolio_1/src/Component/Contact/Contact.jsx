@@ -44,7 +44,7 @@ const Cont = () => {
                 <textarea className="form-control" id="message" name="message" rows="4" required />
               </div>
 
-              <button type="submit" onClick={handleformempty} className="btn accent-outline w-100">Submit</button>
+              <button type="submit" className="btn accent-outline w-100">Submit</button>
             </form>
           </div>
         </div>
