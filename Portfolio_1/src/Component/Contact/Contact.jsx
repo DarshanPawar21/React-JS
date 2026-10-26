@@ -1,20 +1,6 @@
 import "../Hero/Hero.css";
 
 const Cont = () => {
-
-  const handleformempty = () => {
-    const name = document.getElementById("name");
-    const email = document.getElementById("email");
-    const phone = document.getElementById("phone");
-    const message= document.getElementById("message");
-
-    name.value = "";
-    email.value = "";
-    phone.value = "";
-    message.value = "";
-
-  }
-
   return (
     <section className="section-block contact-section" id="Cont">
       <div className="container">
