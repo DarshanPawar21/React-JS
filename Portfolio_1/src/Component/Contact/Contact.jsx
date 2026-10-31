@@ -1,5 +1,7 @@
 import "../Hero/Hero.css";
 
+
+
 const Cont = () => {
   return (
     <section className="section-block contact-section" id="Cont">

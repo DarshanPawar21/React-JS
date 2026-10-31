@@ -8,6 +8,7 @@ const ManagerLogin = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ email: "", password: "" });
+    const [submitError, setSubmitError] = useState("");
 
     const { loading, error, loginMessage } = useSelector((state) => state.manager_Login)
 
@@ -16,11 +17,18 @@ const ManagerLogin = () => {
         setFormData((e) => ({ ...e, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(loginManager(formData));
-        localStorage.setItem("manager_login", JSON.stringify(formData));
-        navigate("/manager/dashboard")
+        try {
+            await dispatch(loginManager(formData)).unwrap();
+            navigate("/manager/dashboard")
+        } catch (error) {
+            setSubmitError(
+                typeof error === "string" ? error : "Login failed"
+            );
+        }
+        // dispatch(loginManager(formData));
+        // localStorage.setItem("manager_login", JSON.stringify(formData));
     };
 
     return (

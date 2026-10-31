@@ -51,9 +51,14 @@ export const loginManager = createAsyncThunk(
                 body: JSON.stringify({ email, password }),
             });
             const data = await res.json();
+            if(res.ok ||data.status !== true){
+                return rejectWithValue(data.message);
+            }
             return data;
         } catch (error) {
-            return console.log(error.message || "Something went wrong");
+            return rejectWithValue(
+                error.message || "login failed !"
+            )
         }
     }
 );
@@ -118,7 +123,7 @@ export const Account_Adding = createAsyncThunk("addind/account", async ({ IFSCCo
         console.log(data);
         return data.result
     } catch (error) {
-        return console.log(error.message || "Something went wrong");
+            return console.log(error.message || "Something went wrong");
     }
 })
 
